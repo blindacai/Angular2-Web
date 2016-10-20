@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+
 import {MissionService} from "../tutorial-online/service-observable/mission.service";
+import {TabFourService} from "../other/stackoverflowQ/tabfour.service";
 
 @Component({
     selector: 'about',
@@ -13,8 +15,4 @@ import {MissionService} from "../tutorial-online/service-observable/mission.serv
 
 export class TabThreeComponent {
     title: string = "This is TabThree";
-
-    constructor(){
-
-    }
 }

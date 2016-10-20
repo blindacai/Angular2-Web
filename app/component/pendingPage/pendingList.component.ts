@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/library";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'pending-list',
@@ -27,9 +28,11 @@ import {Library} from "../../service/library";
     //styleUrls: ['app/view/bootstrap.min.css']
 })
 
-export class PendingListComponent implements OnInit{
+export class PendingListComponent implements OnInit, OnDestroy{
     title: string = "This is Pending page";
     libraries: Library[] = [];
+
+    subscription: Subscription;
 
     ngOnInit(): void {
       this.getLibraryFromLocal();
@@ -40,12 +43,12 @@ export class PendingListComponent implements OnInit{
 
     getLibraryFromDatabase() {
         this.libraries = [];
-        this.libraryService.getLibraryFromDatabase()
+        this.subscription = this.libraryService.getLibraryFromDatabase()
             .subscribe(libs => this.createLibs(libs));
     }
 
     getLibraryFromLocal() {
-        this.libraryService.getLibraryFromLocal()
+        this.subscription = this.libraryService.getLibraryFromLocal()
             .subscribe(libs => this.createLibs(libs));
 
     }
@@ -59,6 +62,10 @@ export class PendingListComponent implements OnInit{
         for (let lib of libs){
             this.libraries.push( new Library(lib.id, lib.library_id, lib.status.qc0_status, lib.status.qc_comments, lib.addcomments) )
         }
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
 

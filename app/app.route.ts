@@ -5,6 +5,7 @@ import { PendingListComponent } from "./component/pendingPage/pendingList.compon
 import {TabTwoComponent} from "./component/tabtwo.component";
 import {TabThreeComponent} from "./component/tabthree.component";
 import {ReviewComponent} from "./component/review.component";
+import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
 
 const routes: Routes = [
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'tabthree',
         component: TabThreeComponent
+    },
+    {
+        path: 'tabfour',
+        component: TabFourComponent
     },
   {
     path: 'review/:id',

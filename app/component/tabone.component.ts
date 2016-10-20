@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MissionService} from "../tutorial-online/service-observable/mission.service";
+import {Subscription, Observable} from "rxjs";
 
 @Component({
     selector: 'tab-one',
@@ -12,7 +13,8 @@ import {MissionService} from "../tutorial-online/service-observable/mission.serv
                 <heroes-list></heroes-list>
                 <br>
                 <mission-control></mission-control>
-                <br> -->
+                <br> 
+                -->
                 <div *ngFor="let his of history">
                     {{his}}
                 </div>
@@ -22,16 +24,22 @@ import {MissionService} from "../tutorial-online/service-observable/mission.serv
     //styleUrls: ['app/view/bootstrap.min.css']
 })
 
-export class TabOneComponent implements OnInit{
+export class TabOneComponent implements OnInit, OnDestroy{
     title: string = "This is TabOne";
-    history: string[] = ['a', 'b'];
+    history: string[] = [];
     count: number = 0;
     counttwo: number = 0;
     countobs: number = 0;
 
+    obs: Observable<string[]>;
 
+    subscription: Subscription;
 
     ngOnInit(){
+        //this.reviewed();
+    }
+
+    ngAfterContentInit(){
         //this.reviewed();
     }
 
@@ -44,21 +52,40 @@ export class TabOneComponent implements OnInit{
             console.log("now in tabone reviewed " + this.count + " " + astronaut);
         });
         */
-        this.counttwo++
+        this.counttwo++;
         console.log("now in tab one constructor: " + this.counttwo);
         this.reviewed();
-        this.reviewed();
+        //this.reviewed();
+        //this.getdata();
     }
 
     reviewed(){
         this.count++;
         console.log("now in tab one reviewed: " + this.count);
-        this.missionService.getconfirmed().subscribe(astronaut => {
+        //this.missionService.getconfirmed().subscribe(() => console.log("give me sth..."));
+        this.obs = this.missionService.getconfirmed();
+        console.log(this.obs);
+        //setTimeout( () => this.obs.subscribe(() => console.log("testing")), 0);
+        this.subscription = this.obs.subscribe( data => console.log("testing"), err => console.log("empty"), () => console.log("complete"));
+            /*
+                                                            this.history = [];
                                                             for(let astro of astronaut){
-                                                                this.history.push(`${astro} confirmed the mission`);
+                                                                this.history.push(`${astro} `);
                                                             }
                                                             this.countobs++;
-                                                            console.log("now in tabone observable " + this.countobs + " " + astronaut);
-                                                            });
+                                                            console.log("now in tabone observable " + this.countobs + " " + this.history);
+                                                            })*/
     }
+
+
+getdata(){
+    this.history = this.missionService.getdata();
+}
+
+
+    ngOnDestroy() {
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
+    }
+    
 }
