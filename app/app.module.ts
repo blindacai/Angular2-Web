@@ -75,7 +75,7 @@ import {TabFourService} from "./other/stackoverflowQ/tabfour.service";
 
   ],
 
-  providers: [LibraryService, HeroesService, TabFourService],
+  providers: [LibraryService, HeroesService, TabFourService, HistoryService],
 
   bootstrap: [ ProjectTitleComponent ]
 })

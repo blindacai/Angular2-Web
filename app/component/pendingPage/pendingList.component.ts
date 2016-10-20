@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/library";
-import {HistoryService} from "../../service/history.service";
 import {Subscription} from "rxjs";
 
 

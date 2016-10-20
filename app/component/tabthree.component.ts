@@ -8,8 +8,6 @@ import {TabFourService} from "../other/stackoverflowQ/tabfour.service";
     selector: 'about',
     template: `
                 {{title}}
-                <my-astronaut></my-astronaut>
-
               `
     //templateUrl: 'app/view/navbar-body.html'
     //styleUrls: ['app/view/bootstrap.min.css']
