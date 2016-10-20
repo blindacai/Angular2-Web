@@ -2,13 +2,14 @@ import {Component, OnInit, Input} from '@angular/core';
 import {HistoryService} from "../service/history.service";
 import {Library} from "../service/library";
 
+import {TabFourService} from "../other/stackoverflowQ/tabfour.service";
+
 @Component({
     selector: 'about',
     template: `
                 {{title}}
-                <div *ngFor = "let lib of reviewed">
-                    {{lib.id}} has been reviewed; {{lib.addcomments}}
-                </div>
+                <my-astronaut></my-astronaut>
+
               `
     //templateUrl: 'app/view/navbar-body.html'
     //styleUrls: ['app/view/bootstrap.min.css']

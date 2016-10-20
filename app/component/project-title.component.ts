@@ -11,11 +11,10 @@ import '../rxjs-operators';
                     <a [routerLink] ="['/tabone']" routerLinkActive="active">TabOne</a>
                     <a [routerLink] ="['/tabtwo']" routerLinkActive="active">TabTwo</a>
                     <a [routerLink] ="['/tabthree']" routerLinkActive="active">TabThree</a>
+                    <a [routerLink] ="['/tabfour']" routerLinkActive="active">TabFour</a>
                 </nav>
                 <br>
                 <router-outlet></router-outlet>
-                <br>
-                <dialogue></dialogue>
               `
     //templateUrl: 'app/view/navbar-title.html',
     //styleUrls: ['app/view/bootstrap.min.css', 'app/view/navbar.css']
