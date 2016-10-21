@@ -26,23 +26,35 @@ export class HeroEditorComponent {
     @Output() canceled = new EventEmitter();
     @Output() saved = new EventEmitter();
 
-    constructor(private restoreService: RestoreService<Hero>) {}
+    oldhero: Hero;
+    copiedhero: Hero;
+
+    //constructor(private restoreService: RestoreService<Hero>) {}
 
     @Input()
     set hero (hero: Hero) {
-        this.restoreService.setItem(hero);
+        //this.restoreService.setItem(hero);
+        this.oldhero = hero;
+        this.copiedhero = this.clone(hero);
+    }
+
+    clone(hero: Hero){
+        return JSON.parse(JSON.stringify(hero));
     }
 
     get hero () {
-        return this.restoreService.getItem();
+        //return this.restoreService.getItem();
+        return this.copiedhero;
     }
 
     onSaved () {
-        this.saved.emit(this.restoreService.getItem());
+        //this.saved.emit(this.restoreService.getItem());
+        this.saved.emit(this.hero);
     }
 
     onCanceled () {
-        this.hero = this.restoreService.restoreItem();
+        //this.hero = this.restoreService.restoreItem();
+        this.hero = this.oldhero;
         //this.canceled.emit(this.hero);
         this.canceled.next(0);
     }
