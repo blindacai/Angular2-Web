@@ -32,6 +32,7 @@ import {HeroesService} from "./tutorial-online/service-injector/heroes.service";
 
 import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
 import {TabFourService} from "./other/stackoverflowQ/tabfour.service";
+import {formatLibService} from "./service/formatLib.service";
 
 // Looks like adding Angular2-in-memory-web-api in 'imports' will override other mock servers
 @NgModule({
@@ -75,7 +76,7 @@ import {TabFourService} from "./other/stackoverflowQ/tabfour.service";
 
   ],
 
-  providers: [LibraryService, HeroesService, TabFourService, HistoryService],
+  providers: [LibraryService, HeroesService, TabFourService, HistoryService, formatLibService],
 
   bootstrap: [ ProjectTitleComponent ]
 })

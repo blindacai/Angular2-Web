@@ -32,7 +32,6 @@ export class TabTwoComponent {
 
     getLibraryFromLocal() {
         this.libraryService.getLibraryFromLocal()
-            .subscribe(libs => {for (let lib of libs) {this.libraries.push( new Library(lib.id, lib.library_id, lib.status.qc0_status, lib.status.qc_comments, lib.addcomments) )}});
-
+            .subscribe(libs => this.libraries = libs);
     }
 }

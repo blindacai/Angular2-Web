@@ -56,31 +56,24 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
 
     getLibraryFromDatabase() {
-        this.libraries = [];
         this.subscription = this.libraryService.getLibraryFromDatabase()
-            .subscribe(libs => this.createLibs(libs));
+            .subscribe(libs => this.libraries = libs);
     }
 
     getLibraryFromLocal() {
         this.subscription = this.libraryService.getLibraryFromLocal()
-            .subscribe(libs => this.createLibs(libs));
+            .subscribe(libs => this.libraries = libs);
 
     }
 
-    updatedLibs(libs: any[]) {
-        this.libraries = [];
-        this.createLibs(libs)
-    }
 
-    private createLibs(libs: any): void {
-        for (let lib of libs) {
-            this.libraries.push(new Library(lib.id, lib.library_id, lib.status.qc0_status, lib.status.qc_comments, lib.addcomments))
-        }
+    updatedLibs(libs: Library[]) {
+        this.libraries = libs;
     }
 
 
-    reviewedLib(lib: any) {
-        this.reviewed.push(new Library(lib.id, lib.library_id, lib.status.qc0_status, lib.status.qc_comments, lib.addcomments));
+    reviewedLib(lib: Library) {
+        this.reviewed.push(lib);
 
     }
 

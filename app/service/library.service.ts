@@ -4,29 +4,29 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import {Library} from "./library";
+import {formatLibService} from "./formatLib.service";
 
 @Injectable()
 export class LibraryService {
-  constructor(private http: Http){ }
 
   //private dataurl = 'http://localhost:4000/data';
-  //private dataurl = 'app/libraries';
   private dataurl_database = 'http://localhost:8080/pending_db';
   private dataurl_local = 'http://localhost:8080/pending_local';
 
+  constructor(private http: Http, private formatlibservice: formatLibService){ }
 
 // change the return type from Library[] to any[] database structure and Library.ts is not the same
 // to get the status from database: lib.status.qc0_status, while from Library.ts: lib.status
-    getLibraryFromDatabase(): Observable<any[]> {
+    getLibraryFromDatabase(): Observable<Library[]> {
       return this.http.get(this.dataurl_database)
-                 .map(data => data.json())
-                 //.catch(this.handleError);
+                 .map(data => this.formatlibservice.format(data.json()))
+                 .catch(this.handleError);
     }
   
-  getLibraryFromLocal(): Observable<any[]> {
+  getLibraryFromLocal(): Observable<Library[]> {
     return this.http.get(this.dataurl_local)
-      .map(data => data.json())
-      //.catch(this.handleError);
+      .map(data => this.formatlibservice.format(data.json()))
+      .catch(this.handleError);
   }
 
 
@@ -37,7 +37,7 @@ export class LibraryService {
 
     return this.http.post(this.dataurl_database, body, options)
       .map(data => data.json())
-      //.catch(this.handleError);
+      .catch(this.handleError);
   }
 
 
