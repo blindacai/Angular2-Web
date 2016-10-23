@@ -15,19 +15,22 @@ import {Subscription} from "rxjs";
                     <div *ngFor = "let lib of libraries">
                         <br>
                         <lib-list [library] = lib></lib-list>
+                        
                         <library-form 
                             [library] = lib 
                             (updatedLibs) = "updatedLibs($event)"
                             (reviewedLib) = "reviewedLib($event)">
                         </library-form>
+                        
                     </div>
                 </div>
 
                 <br>
-                <div *ngIf = "reviewed">
+                <div *ngIf = "reviewed.length > 0">
                     <div *ngFor = "let lib of reviewed">
                         {{lib.id}} has been reviewed
                     </div>
+                    <p>For details, go to History tab</p>
                 </div>
                 
                 <br>
@@ -51,8 +54,7 @@ export class PendingListComponent implements OnInit, OnDestroy {
         this.getLibraryFromLocal();
     }
 
-    constructor(private libraryService: LibraryService) {
-    }
+    constructor(private libraryService: LibraryService) {}
 
 
     getLibraryFromDatabase() {
@@ -66,32 +68,15 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
     }
 
-
     updatedLibs(libs: Library[]) {
         this.libraries = libs;
     }
 
-
     reviewedLib(lib: Library) {
         this.reviewed.push(lib);
-
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(){
         this.subscription.unsubscribe();
-
     }
-
-
-    /*
-     getLibraryFromDatabase() {
-     this.libraryService.getLibraryFromDatabase()
-     .subscribe(libs => this.libraries = libs);
-     }
-
-     getLibraryFromLocal(){
-     this.libraryService.getLibraryFromLocal().subscribe(lib => this.libraries = lib);
-     }
-     */
-
 }

@@ -13,7 +13,7 @@ export class formatLibService{
                                 library_id: lib.library_id,
                                 status: lib.status.qc0_status,
                                 comments: lib.status.qc_comments,
-                                addcomments: ''
+                                addcomments: null
                                 })
         }
         return this.libraries;

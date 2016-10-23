@@ -17,11 +17,11 @@ export class LibraryService {
 
 // change the return type from Library[] to any[] database structure and Library.ts is not the same
 // to get the status from database: lib.status.qc0_status, while from Library.ts: lib.status
-    getLibraryFromDatabase(): Observable<Library[]> {
-      return this.http.get(this.dataurl_database)
-                 .map(data => this.formatlibservice.format(data.json()))
-                 .catch(this.handleError);
-    }
+  getLibraryFromDatabase(): Observable<Library[]> {
+    return this.http.get(this.dataurl_database)
+               .map(data => this.formatlibservice.format(data.json()))
+               .catch(this.handleError);
+  }
   
   getLibraryFromLocal(): Observable<Library[]> {
     return this.http.get(this.dataurl_local)
@@ -29,17 +29,47 @@ export class LibraryService {
       .catch(this.handleError);
   }
 
+  //id:number, status: string, addcomments: string
 
-  updateLibrary(id:number, status: string, addcomments: string): Observable<Library[]> {
-    let body = JSON.stringify( {id, status, addcomments} );
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
+  updateLibrary(lib: Library): Observable<Library[]> {
+    if(!this.doUpdate(lib)){
+      return null;
+    }
+    else{
+      let body = JSON.stringify( {'id': lib.id,
+                                  'status': lib.status,
+                                  'addcomments': (this.autoAppend(lib)? ';Manual Review: ':';') + lib.addcomments} );
 
-    return this.http.post(this.dataurl_database, body, options)
-      .map(data => data.json())
-      .catch(this.handleError);
+      let headers = new Headers({'Content-Type': 'application/json'});
+      let options = new RequestOptions({headers: headers});
+
+      return this.http.post(this.dataurl_database, body, options)
+          .map(data => this.formatlibservice.format(data.json()))
+          .catch(this.handleError);
+    }
   }
 
+  private doUpdate(lib: Library): boolean{
+    if(lib.addcomments == null){
+      if ( window.confirm("No further comments?") ){
+        lib.addcomments = "No further comments";
+        return true;
+      }
+    }
+    else{
+      if( window.confirm("Status: " + lib.status + ";" + "Comments: " + lib.addcomments + "?") ){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private autoAppend(lib: Library): boolean{
+    if(lib.comments.includes("Manual Review"))
+      return false;
+    else
+      return true;
+  }
 
   private handleError(error: any) {
     // In a real world app, we might use a remote logging infrastructure...

@@ -9,7 +9,7 @@ import {HistoryService} from "../../service/history.service";
 @Component({
   selector: 'library-form',
   template: `
-              <form (ngSubmit) = checkUpdate() #libform = "ngForm">
+              <form (ngSubmit) = update() #libform = "ngForm">
                 <div>
                 
                   <select id = "status"
@@ -40,41 +40,22 @@ export class LibraryFormComponent{
   reviewedLib = new EventEmitter<Library>();
 
   constructor(private libraryService: LibraryService,
-              private historyService: HistoryService){
-  }
-
-
-  checkUpdate(){
-    if(this.library.addcomments == null){
-      if ( window.confirm("No further comments?") ){
-        this.library.addcomments = "No further comments";
-        this.update();
-      }
-    }
-    else{
-      if( window.confirm("Status: " + this.library.status + ";" + "Comments: " + this.library.addcomments + "?") ){
-        this.update();
-      }
-    }
-    return;
-  }
+              private historyService: HistoryService){}
 
   update(){
-    this.libraryService.updateLibrary(this.library.id, this.library.status, (this.autoAppend()? ';Manual Review: ':';') + this.library.addcomments)
-        .subscribe(data => {
-                            this.updatedLibs.emit(data);
-                            this.reviewedLib.emit(this.library);
-                           });
+    var update = this.libraryService.updateLibrary(this.library);
+    if(!update){
+      return;
+    }
+    else{
+      update.subscribe(data => {
+                                this.updatedLibs.emit(data);
+                                this.reviewedLib.emit(this.library);
+                               }
+      )
 
-    this.historyService.addReviewedLibrary(this.library);
+      // TODO:
+      this.historyService.addReviewedLibrary(this.library);
+    }
   }
-
-
-  private autoAppend(): boolean{
-    if(this.library.comments.includes("Manual Review"))
-      return false;
-    else
-      return true;
-  }
-
 }
