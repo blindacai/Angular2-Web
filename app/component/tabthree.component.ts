@@ -1,24 +1,27 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {HistoryService} from "../service/history.service";
 import {Library} from "../service/library";
 
 import {TabFourService} from "../other/stackoverflowQ/tabfour.service";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'about',
     template: `
                 {{title}}
+                <div *ngFor = "let lib of reviewed">
+                    {{lib.id}}, {{lib.status}}, {{lib.comments}}
+                </div>
               `
     //templateUrl: 'app/view/navbar-body.html'
     //styleUrls: ['app/view/bootstrap.min.css']
 })
 
-export class TabThreeComponent implements OnInit{
+export class TabThreeComponent implements OnInit, OnDestroy{
     title: string = "This is TabThree";
 
-
+    subscription: Subscription;
     reviewed: Library[] = [];
-
 
     ngOnInit(){
         this.getReviewedLib();
@@ -26,22 +29,13 @@ export class TabThreeComponent implements OnInit{
 
     constructor(private historyService: HistoryService){}
 
-    /*
     getReviewedLib(){
-        console.log("now in get reviewed: ");
-        this.historyService.reviewedHistory$.subscribe(
-            lib => {
-                this.reviewed.push(lib);
-                console.log("showing lib: " + JSON.stringify(lib));
-                }
-        );
-        console.log("done");
+        this.subscription = this.historyService.getReviewed().subscribe(libs => this.reviewed = libs);
+        this.historyService.getReviewed();
     }
-    */
 
-
-    getReviewedLib(){
-        this.reviewed = this.historyService.getReviewed();
+    ngOnDestroy(){
+        this.subscription.unsubscribe();
     }
 
 }

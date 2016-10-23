@@ -48,13 +48,8 @@ export class LibraryFormComponent{
       return;
     }
     else{
-      update.subscribe(data => {
-                                this.updatedLibs.emit(data);
-                                this.reviewedLib.emit(this.library);
-                               }
-      )
-
-      // TODO:
+      update.subscribe(data => this.updatedLibs.emit(data));
+      this.reviewedLib.emit(this.library);
       this.historyService.addReviewedLibrary(this.library);
     }
   }

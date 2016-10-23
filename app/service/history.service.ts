@@ -4,17 +4,17 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class HistoryService{
-    private reviewedHistory = new Subject<any>();
+    private historySource = new Subject<Library[]>();
     reviewedLibs: Library[] = [];
 
-    reviewedHistory$ = this.reviewedHistory.asObservable();
+    historySource$ = this.historySource.asObservable();
 
     addReviewedLibrary(lib: Library){
-        this.reviewedHistory.next(lib);
         this.reviewedLibs.push(lib);
     }
 
     getReviewed(){
-        return this.reviewedLibs;
+        this.historySource.next(this.reviewedLibs);
+        return this.historySource$;
     }
 }
