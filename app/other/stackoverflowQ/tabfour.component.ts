@@ -7,32 +7,31 @@ import {Subscription} from "rxjs";
     template: `
                 {{title}}
                 <p>this is test: {{test}}</p>
-                `
+                `,
+    providers: [TabFourService]
 })
 
 export class TabFourComponent implements OnInit, OnDestroy{
     title: string = "This is Tab four";
-    
     test: string;
-
     subscription: Subscription;
 
     constructor(private tabfourService: TabFourService){}
-
-/*
-    ngOnInit(){
-        console.log("now in init");
-        this.getItems();
-        this.getItems();
-    }
-*/
 
     ngOnInit() {
     this.subscription = this.tabfourService.getItems()
                             .subscribe(data => this.test = data);
     // The subscription has been taken in charge, now call the service's method
     this.tabfourService.getItems();
-}
+    }
+
+/*
+     ngOnInit(){
+     console.log("now in init");
+     this.getItems();
+     this.getItems();
+     }
+*/
 
 /*
     getItems(){

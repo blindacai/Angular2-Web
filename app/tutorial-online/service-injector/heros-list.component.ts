@@ -36,7 +36,10 @@ import { Hero } from './hero';
 
         </li>
       </ul>
-    </div>`
+    </div>
+    `,
+
+    providers: [HeroesService]
 })
 export class HeroesListComponent {
     heroes: Array<EditItem<Hero>>;

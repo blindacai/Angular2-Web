@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/library";
 import {Subscription} from "rxjs";
+import {HistoryService} from "../../service/history.service";
 
 
 @Component({
@@ -37,8 +38,7 @@ import {Subscription} from "rxjs";
                 <dialogue></dialogue>
                 
                 <!--<hero-form></hero-form>-->
-              `,
-    providers: [ LibraryService ]
+              `
     //templateUrl: 'app/view/navbar-body.html',
     //styleUrls: ['app/view/bootstrap.min.css']
 })
