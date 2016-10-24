@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/library";
 import {Subscription} from "rxjs";
-import {HistoryService} from "../../service/history.service";
+import {LibraryLocal} from "../../service/library.localservice";
 
 
 @Component({
@@ -54,7 +54,7 @@ export class PendingListComponent implements OnInit, OnDestroy {
         this.getLibraryFromLocal();
     }
 
-    constructor(private libraryService: LibraryService) {}
+    constructor(private libraryService: LibraryService, private librarylocal: LibraryLocal) {}
 
 
     getLibraryFromDatabase() {
@@ -62,11 +62,17 @@ export class PendingListComponent implements OnInit, OnDestroy {
             .subscribe(libs => this.libraries = libs);
     }
 
+/*
+    getLibraryFromLocal() {
+        this.libraries = this.librarylocal.getLibs();
+    }
+*/
+
     getLibraryFromLocal() {
         this.subscription = this.libraryService.getLibraryFromLocal()
             .subscribe(libs => this.libraries = libs);
-
     }
+
 
     updatedLibs(libs: Library[]) {
         this.libraries = libs;
@@ -77,6 +83,8 @@ export class PendingListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(){
-        this.subscription.unsubscribe();
+        if(this.subscription){
+            this.subscription.unsubscribe();
+        }
     }
 }

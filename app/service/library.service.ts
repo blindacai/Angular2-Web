@@ -5,31 +5,31 @@ import { Observable } from 'rxjs/Observable';
 
 import {Library} from "./library";
 import {formatLibService} from "./formatLib.service";
+import {LibraryLocal} from "./library.localservice";
 
 @Injectable()
 export class LibraryService {
-
-  //private dataurl = 'http://localhost:4000/data';
   private dataurl_database = 'http://localhost:8080/pending_db';
   private dataurl_local = 'http://localhost:8080/pending_local';
 
-  constructor(private http: Http, private formatlibservice: formatLibService){ }
+  constructor(private http: Http,
+              private formatlibservice: formatLibService,
+              private librarylocal: LibraryLocal){ }
 
-// change the return type from Library[] to any[] database structure and Library.ts is not the same
-// to get the status from database: lib.status.qc0_status, while from Library.ts: lib.status
+
   getLibraryFromDatabase(): Observable<Library[]> {
     return this.http.get(this.dataurl_database)
                .map(data => this.formatlibservice.format(data.json()))
+               .do(data => this.librarylocal.assign(data))
                .catch(this.handleError);
   }
-  
+
   getLibraryFromLocal(): Observable<Library[]> {
     return this.http.get(this.dataurl_local)
-      .map(data => this.formatlibservice.format(data.json()))
-      .catch(this.handleError);
+        .map(data => this.formatlibservice.format(data.json()))
+        .catch(this.handleError);
   }
 
-  //id:number, status: string, addcomments: string
 
   updateLibrary(lib: Library): Observable<Library[]> {
     if(!this.doUpdate(lib)){

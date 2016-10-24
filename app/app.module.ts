@@ -14,10 +14,12 @@ import { ProjectTitleComponent } from './component/project-title.component';
 import {LibraryService} from "./service/library.service";
 import {HistoryService} from "./service/history.service";
 import {formatLibService} from "./service/formatLib.service";
+import {LibraryLocal} from "./service/library.localservice";
 
-// user defined
+// export const
 import {exampleComponents, pendingComponents} from "./assemble";
 import { routing } from './app.route'
+
 
 // Looks like adding Angular2-in-memory-web-api in 'imports' will override other mock servers
 @NgModule({
@@ -37,7 +39,10 @@ import { routing } from './app.route'
       ...exampleComponents
   ],
 
-  providers: [LibraryService, formatLibService, HistoryService],
+  providers: [LibraryService,
+              formatLibService,
+              HistoryService,
+              LibraryLocal],
 
   bootstrap: [ ProjectTitleComponent ]
 })
