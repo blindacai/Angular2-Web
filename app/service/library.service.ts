@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, Response, URLSearchParams} from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,6 +11,7 @@ import {LibraryLocal} from "./library.localservice";
 export class LibraryService {
   private dataurl_database = 'http://localhost:8080/pending_db';
   private dataurl_local = 'http://localhost:8080/pending_local';
+  private dataurl_lib = 'http://localhost:8080/library';
 
   constructor(private http: Http,
               private formatlibservice: formatLibService,
@@ -19,15 +20,22 @@ export class LibraryService {
 
   getLibraryFromDatabase(): Observable<Library[]> {
     return this.http.get(this.dataurl_database)
-               .map(data => this.formatlibservice.format(data.json()))
+               .map(data => this.formatlibservice.formatLibs(data.json()))
                .do(data => this.librarylocal.assign(data))
                .catch(this.handleError);
   }
 
   getLibraryFromLocal(): Observable<Library[]> {
     return this.http.get(this.dataurl_local)
-        .map(data => this.formatlibservice.format(data.json()))
+        .map(data => this.formatlibservice.formatLibs(data.json()))
         .catch(this.handleError);
+  }
+
+  getLibById(id: number): Observable<Library>{
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('libid', id.toString());
+    return this.http.get(this.dataurl_lib, {search: params})
+               .map(data => this.formatlibservice.formatLib(data.json()));
   }
 
 
@@ -44,7 +52,7 @@ export class LibraryService {
       let options = new RequestOptions({headers: headers});
 
       return this.http.post(this.dataurl_database, body, options)
-          .map(data => this.formatlibservice.format(data.json()))
+          .map(data => this.formatlibservice.formatLibs(data.json()))
           .catch(this.handleError);
     }
   }
