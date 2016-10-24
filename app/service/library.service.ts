@@ -35,7 +35,8 @@ export class LibraryService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('libid', id.toString());
     return this.http.get(this.dataurl_lib, {search: params})
-               .map(data => this.formatlibservice.formatLib(data.json()));
+               .map(data => this.formatlibservice.formatLib(data.json()))
+               .catch(this.handleError);
   }
 
 
