@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {LibraryService} from "../service/library.service";
 import {Library} from "../service/library";
+import {LibraryLocal} from "../service/library.localservice";
 
 
 @Component({
@@ -25,13 +26,12 @@ export class TabTwoComponent {
   libraries: Library[] = [];
 
   ngOnInit(): void {
-  this.getLibraryFromLocal();
+    this.getLibraryFromLocal();
   }
 
-  constructor(private libraryService: LibraryService) { }
+  constructor(private librarylocal: LibraryLocal) { }
 
     getLibraryFromLocal() {
-        this.libraryService.getLibraryFromLocal()
-            .subscribe(libs => this.libraries = libs);
+        this.libraries = this.librarylocal.getLibs();
     }
 }
