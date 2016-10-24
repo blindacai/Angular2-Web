@@ -2,7 +2,6 @@ import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {HistoryService} from "../service/history.service";
 import {Library} from "../service/library";
 
-import {TabFourService} from "../other/stackoverflowQ/tabfour.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -19,6 +18,8 @@ import {Subscription} from "rxjs";
 
 export class TabThreeComponent implements OnInit, OnDestroy{
     title: string = "This is TabThree";
+
+    test: string;
 
     subscription: Subscription;
     reviewed: Library[] = [];
