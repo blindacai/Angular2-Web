@@ -29,9 +29,10 @@ export class TabTwoComponent {
     this.getLibraryFromLocal();
   }
 
-  constructor(private librarylocal: LibraryLocal) { }
+  constructor(private libraryService: LibraryService, private librarylocal: LibraryLocal) { }
 
     getLibraryFromLocal() {
-        this.libraries = this.librarylocal.getLibs();
+        this.libraryService.getLibraryFromLocal()
+            .subscribe(libs => this.libraries = libs);
     }
 }

@@ -10,6 +10,7 @@ import {LibraryLocal} from "./library.localservice";
 @Injectable()
 export class LibraryService {
   private dataurl_database = 'http://localhost:8080/pending_db';
+  private dataurl_local = 'http://localhost:8080/pending_local';
 
   constructor(private http: Http,
               private formatlibservice: formatLibService,
@@ -21,6 +22,12 @@ export class LibraryService {
                .map(data => this.formatlibservice.format(data.json()))
                .do(data => this.librarylocal.assign(data))
                .catch(this.handleError);
+  }
+
+  getLibraryFromLocal(): Observable<Library[]> {
+    return this.http.get(this.dataurl_local)
+        .map(data => this.formatlibservice.format(data.json()))
+        .catch(this.handleError);
   }
 
 
