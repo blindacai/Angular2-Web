@@ -13,15 +13,18 @@ import {Observable} from "rxjs";
               <form (ngSubmit) = update() #libform = "ngForm">
                 <div>
                 
-                  <select id = "status"
-                          [(ngModel)]="library.status" name = "status">
+                  <select id = "status" #local_status
+                    [(ngModel)]="library.status" name = "status">
                     <option *ngFor = "let s of status" [value] = "s">{{s}}</option>
                   </select>
-                  
+
                   <input type = "text" id = "comments"
                          [(ngModel)]="library.addcomments" name = "comments">
                   
-                  <button type = "submit">update</button>
+                  <button type = "submit" 
+                          [disabled] = "local_status.value == 'Pending'">
+                    update
+                  </button>
                   
                   <div *ngIf = "errorMsg">
                     {{errorMsg}}
