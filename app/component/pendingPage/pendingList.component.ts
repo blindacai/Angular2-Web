@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/library";
 import {Subscription} from "rxjs";
-import {LibraryLocal} from "../../service/library.localservice";
+import {LibraryLocal} from "../../other/library.localservice";
 
 
 @Component({

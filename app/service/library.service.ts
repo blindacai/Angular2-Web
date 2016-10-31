@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import {Library} from "./library";
 import {formatLibService} from "./formatLib.service";
-import {LibraryLocal} from "./library.localservice";
+import {LibraryLocal} from "../other/library.localservice";
 
 @Injectable()
 export class LibraryService {

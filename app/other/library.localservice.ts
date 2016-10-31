@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Library} from "./library";
+import {Library} from "../service/library";
 
 
 @Injectable()

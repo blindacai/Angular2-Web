@@ -14,7 +14,7 @@ import { ProjectTitleComponent } from './component/project-title.component';
 import {LibraryService} from "./service/library.service";
 import {HistoryService} from "./service/history.service";
 import {formatLibService} from "./service/formatLib.service";
-import {LibraryLocal} from "./service/library.localservice";
+import {LibraryLocal} from "./other/library.localservice";
 
 // export const
 import {exampleComponents, pendingComponents} from "./assemble";

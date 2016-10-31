@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {LibraryService} from "../service/library.service";
 import {Library} from "../service/library";
-import {LibraryLocal} from "../service/library.localservice";
+import {LibraryLocal} from "../other/library.localservice";
 
 
 @Component({
