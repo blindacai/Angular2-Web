@@ -48,13 +48,10 @@ export class ReviewComponent implements OnInit{
   }
 
   readFile(inputValue: any) : void {
-    var self = this;
     var file:File = inputValue.files[0]; 
     var myReader:FileReader = new FileReader();
 
-    myReader.onloadend = function(e){
-      self.filecontent = myReader.result;
-    }
+    myReader.onloadend = (ev) => { this.filecontent = myReader.result };
     myReader.readAsText(file);
   }
 
