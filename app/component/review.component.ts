@@ -17,7 +17,12 @@ import {Library} from "../service/library";
               <div>
                   Select File:
                   <input type="file" (change)="changeListener($event)">
-                  <p>{{filecontent}}</p>
+
+                  <div *ngIf = "filecontent">
+                    <div *ngFor = "let content of filecontent">
+                      <p>{{content}}</p>
+                    </div>
+                  </div>
 
               </div>
               
@@ -29,8 +34,7 @@ export class ReviewComponent implements OnInit{
   id: number;
   lib: Library = null;
 
-  filecontent: string;
-
+  filecontent: string[] = [];
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -58,12 +62,11 @@ export class ReviewComponent implements OnInit{
 
     if(file.type.match(fileType)){
       var myReader: FileReader = new FileReader();
-      myReader.onloadend = (ev) => { this.filecontent = myReader.result };
+      myReader.onloadend = (ev) => { this.filecontent = myReader.result.split(/\r\n|\r|\n/g) };
       myReader.readAsText(file);
     }
-    else this.filecontent = "File not supported!";
+    else this.filecontent = ["File not supported"];
   }
-
 
   backHome(){
     this.router.navigate(['/pending']);
