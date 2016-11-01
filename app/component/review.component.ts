@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {LibraryService} from "../service/library.service";
 import {Library} from "../service/library";
+import {FileContentService} from "../service/fileContent.service";
 
 @Component({
   selector: 'review',
@@ -16,7 +17,7 @@ import {Library} from "../service/library";
               
               <div>
                   Select File:
-                  <input type="file" (change)="changeListener($event)">
+                  <input type="file" (change)="readFile($event)">
 
                   <div *ngIf = "filecontent">
                     <div *ngFor = "let content of filecontent">
@@ -38,7 +39,8 @@ export class ReviewComponent implements OnInit{
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private libraryservice: LibraryService) {}
+              private libraryservice: LibraryService,
+              private filecontentservice: FileContentService) {}
 
   ngOnInit(){
     this.route.params.subscribe(params => this.id = Number.parseInt(params["id"]));
@@ -46,26 +48,8 @@ export class ReviewComponent implements OnInit{
     //console.log(this.lib); // is null; asyn
   }
 
-  // $event.target === <input type="file"
-  changeListener($event) : void {
-    this.readFile($event.target);
-  }
-
-  readFile(inputValue: any) : void {
-    var file = inputValue.files[0];
-    var fileType = /text.*/;
-
-    if(file == null){
-      this.filecontent = null;
-      return;
-    }
-
-    if(file.type.match(fileType)){
-      var myReader: FileReader = new FileReader();
-      myReader.onloadend = (ev) => { this.filecontent = myReader.result.split(/\r\n|\r|\n/g) };
-      myReader.readAsText(file);
-    }
-    else this.filecontent = ["File not supported"];
+  readFile($event){
+    this.filecontentservice.getFileContent($event).subscribe( content => this.filecontent = content )
   }
 
   backHome(){
