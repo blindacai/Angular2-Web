@@ -16,7 +16,8 @@ export class formatLibService{
     formatLib(lib: any): Library{
         var library: Library = {
                                 id: lib.id,
-                                library_id: lib.library_id,
+                                lib: lib.lib,
+                                sublib: lib.sublib,
                                 status: lib.status.qc0_status,
                                 comments: lib.status.qc_comments,
                                 addcomments: null

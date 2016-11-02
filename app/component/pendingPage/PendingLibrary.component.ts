@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   template: `
               <span (click) = "onSelect(library)">{{library.id}}</span> 
               &nbsp;
-              {{library.library_id}} &nbsp; {{library.status}} &nbsp; {{library.comments}} &nbsp; {{library.addcomments}}
+              {{library.lib}} &nbsp; {{library.sublib}} &nbsp; {{library.status}} &nbsp; {{library.comments}} &nbsp; {{library.addcomments}}
               &nbsp;
               
               <br>
