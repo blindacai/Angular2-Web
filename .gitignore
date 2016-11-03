@@ -1,4 +1,5 @@
 .svn
+*.iml
 .idea
 typings/**
 node_modules
