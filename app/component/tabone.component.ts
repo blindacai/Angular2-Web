@@ -15,5 +15,7 @@ import {Subscription, Observable} from "rxjs";
 })
 
 export class TabOneComponent {
-    title: string = "This is TabOne";  
+    title: string = "This is TabOne";
 }
+
+//change from git 1
