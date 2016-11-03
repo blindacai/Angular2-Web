@@ -5,7 +5,7 @@ import '../rxjs-operators';
 @Component({
     selector: 'project-title',
     template: `
-                <h1>Project Title Test</h1>
+                <h1>Project Title</h1>
                 <nav>
                     <a [routerLink] ="['/pending']" routerLinkActive="active">Pending</a>
                     <a [routerLink] ="['/tabone']" routerLinkActive="active">TabOne</a>
