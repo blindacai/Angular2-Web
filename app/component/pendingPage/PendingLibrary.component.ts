@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import {Library} from "../../service/library";
+import {Library} from "../../service/model/library";
 import {LibraryService} from "../../service/library.service";
 import {Router} from "@angular/router";
 
@@ -8,7 +8,13 @@ import {Router} from "@angular/router";
   template: `
               <span (click) = "onSelect(library)">{{library.id}}</span> 
               &nbsp;
-              {{library.lib}} &nbsp; {{library.sublib}} &nbsp; {{library.status}} &nbsp; {{library.comments}} &nbsp; {{library.addcomments}}
+              {{library.lib}} &nbsp; 
+              {{library.sublib}} &nbsp; 
+              {{library.status}} &nbsp; 
+              {{library.comments}} &nbsp; 
+              {{library.addcomments}} &nbsp;
+              {{library.alerts}} &nbsp;
+              {{library.addalerts}}
               &nbsp;
               
               <br>

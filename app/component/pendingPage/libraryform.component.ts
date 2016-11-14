@@ -2,10 +2,12 @@
  * Created by linda on 2016-10-09.
  */
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Library} from "../../service/library";
+import {Library} from "../../service/model/library";
 import {LibraryService} from "../../service/library.service";
 import {HistoryService} from "../../service/history.service";
 import {Observable} from "rxjs";
+import {Alert} from "../../service/model/alert";
+import {AlertService} from "../../service/alert.service";
 
 @Component({
   selector: 'library-form',
@@ -21,8 +23,9 @@ import {Observable} from "rxjs";
                   <input type = "text" id = "comments"
                          [(ngModel)]="library.addcomments" name = "comments">
 
-                  <select id = "alerts" #alert>
-                      <option *ngFor = "let r of alerts" [value] = "r">{{r}}</option>
+                  <select multiple id = "alerts" #alert
+                      [(ngModel)]="library.addalerts" name = "alerts">
+                      <option *ngFor = "let r of alerts" [value] = "r.id">{{r.id}}: {{r.reference}}</option>
                   </select>
                   
                   <button type = "submit" 
@@ -41,7 +44,7 @@ import {Observable} from "rxjs";
 
 export class LibraryFormComponent{
   status = ['Pending', 'Passed', 'Failed'];
-  alerts: number[] = [11, 22];
+  alerts: Alert[] = this.alertService.getAlert();
   errorMsg: string;
 
   @Input()
@@ -54,7 +57,8 @@ export class LibraryFormComponent{
   reviewedLib = new EventEmitter<Library>();
 
   constructor(private libraryService: LibraryService,
-              private historyService: HistoryService){}
+              private historyService: HistoryService,
+              private alertService: AlertService){}
 
   update(){
     var update = this.libraryService.updateLibrary(this.library);

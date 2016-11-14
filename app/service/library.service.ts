@@ -3,7 +3,7 @@ import {Http, Response, URLSearchParams} from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import {Library} from "./library";
+import {Library} from "./model/library";
 import {formatLibService} from "./formatLib.service";
 import {LibraryLocal} from "../other/library.localservice";
 

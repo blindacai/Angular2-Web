@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Library} from "./library";
+import {Library} from "./model/library";
 
 @Injectable()
 export class formatLibService{
@@ -20,7 +20,9 @@ export class formatLibService{
                                 sublib: lib.sublib,
                                 status: lib.status.qc0_status,
                                 comments: lib.status.qc_comments,
-                                addcomments: null
+                                addcomments: null,
+                                alerts: lib.status.alerts || null,
+                                addalerts: null,
                                 };
         return library;
     }

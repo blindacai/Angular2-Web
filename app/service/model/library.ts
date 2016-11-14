@@ -1,3 +1,5 @@
+import {Alert} from "./alert";
+
 export class Library {
     public id: number;
     public lib: string;
@@ -5,5 +7,6 @@ export class Library {
     public status: string;
     public comments: string;
     public addcomments: string;
-    public alert: number;
+    public alerts: string;
+    public addalerts: string;
 }

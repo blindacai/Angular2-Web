@@ -1,5 +1,5 @@
 import {Subject} from "rxjs/Subject";
-import {Library} from "./library";
+import {Library} from "./model/library";
 import {Injectable} from "@angular/core";
 
 @Injectable()

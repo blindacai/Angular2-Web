@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {LibraryService} from "../service/library.service";
-import {Library} from "../service/library";
+import {Library} from "../service/model/library";
 import {FileContentService} from "../service/fileContent.service";
 
 @Component({
