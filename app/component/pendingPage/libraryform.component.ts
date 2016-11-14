@@ -20,6 +20,10 @@ import {Observable} from "rxjs";
 
                   <input type = "text" id = "comments"
                          [(ngModel)]="library.addcomments" name = "comments">
+
+                  <select id = "alerts" #alert>
+                      <option *ngFor = "let r of alerts" [value] = "r">{{r}}</option>
+                  </select>
                   
                   <button type = "submit" 
                           [disabled] = "local_status.value == 'Pending'">
@@ -37,6 +41,7 @@ import {Observable} from "rxjs";
 
 export class LibraryFormComponent{
   status = ['Pending', 'Passed', 'Failed'];
+  alerts: number[] = [11, 22];
   errorMsg: string;
 
   @Input()

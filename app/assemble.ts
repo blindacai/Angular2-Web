@@ -13,6 +13,7 @@ import {ReviewComponent} from "./component/review.component";
 import {PendingListComponent} from "./component/pendingPage/pendingList.component";
 import {PendingLibraryComponent} from "./component/pendingPage/PendingLibrary.component";
 import {LibraryFormComponent} from "./component/pendingPage/libraryform.component";
+import {SplitPipe} from "./pipe/split.pipe";
 
 export const exampleComponents = [
     // form
@@ -31,6 +32,8 @@ export const exampleComponents = [
     HeroEditorComponent,
 
     TabFourComponent,
+
+    SplitPipe
 ];
 
 export const pendingComponents = [

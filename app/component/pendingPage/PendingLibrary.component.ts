@@ -22,12 +22,8 @@ export class PendingLibraryComponent implements OnInit{
   @Input()
   library: any;
 
-  //library: Library;
-
-  ngOnInit(): void {
-    //this.library = new Library(this.inputlibrary.id, this.inputlibrary.library_id, this.inputlibrary.status.qc0_status, this.inputlibrary.status.qc_comments, this.inputlibrary.addcomments);
-  }
-
+  ngOnInit(): void {}
+    
   constructor(
     private libraryService: LibraryService,
     private router: Router) { }
@@ -35,10 +31,4 @@ export class PendingLibraryComponent implements OnInit{
   onSelect(lib: Library){
     this.router.navigate(['/review', lib.id]);
   }
-
-  /*
-  updateLibrary(lib: Library, comments: string){
-    this.libraryService.updateLibrary(lib.id, comments).subscribe(data => this.libraries = data);
-  }
-  */
 }

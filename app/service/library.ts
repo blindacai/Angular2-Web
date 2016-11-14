@@ -5,4 +5,5 @@ export class Library {
     public status: string;
     public comments: string;
     public addcomments: string;
+    public alert: number;
 }

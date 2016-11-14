@@ -45,7 +45,7 @@ export class ReviewComponent implements OnInit{
   ngOnInit(){
     this.route.params.subscribe(params => this.id = Number.parseInt(params["id"]));
     this.libraryservice.getLibById(this.id).subscribe(data => this.lib = data);
-    //console.log(this.lib); // is null; asyn
+    //console.log(this.lib); // is null; async
   }
 
   readFile($event){
