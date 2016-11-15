@@ -18,7 +18,16 @@ import {FileContentService} from "../service/fileContent.service";
               <div>
                   Select File:
                   <input type="file" (change)="readFile($event)">
-
+                  <br>
+                  
+                  <div *ngIf = "fileList">
+                    <div *ngFor = "let file of fileList">
+                      <span (click) = "getContent(file)">{{file}}.txt</span>  
+                    </div>
+                  </div>
+                  
+                  <br>
+                  File Content:
                   <div *ngIf = "filecontent">
                     <div *ngFor = "let content of filecontent">
                       <p>{{content}}</p>
@@ -27,12 +36,11 @@ import {FileContentService} from "../service/fileContent.service";
 
               </div>
 
+              <br>
+              <button (click) = "openurl('txt_one')">open url</button>
+              <br>
+              <br>
 
-              <br>
-              <br>
-              <button (click)="printFile()">read file</button>
-              <br>
-              <br>
               <button (click) = "backHome()">Back</button>
             `
 })
@@ -41,6 +49,7 @@ export class ReviewComponent implements OnInit{
   id: number;
   lib: Library = null;
 
+  fileList: string[] = [];
   filecontent: string[] = [];
 
   constructor(private router: Router,
@@ -52,25 +61,33 @@ export class ReviewComponent implements OnInit{
     this.route.params.subscribe(params => this.id = Number.parseInt(params["id"]));
     this.libraryservice.getLibById(this.id).subscribe(data => this.lib = data);
     //console.log(this.lib); // is null; async
+
+    this.filecontentservice.getFileList().subscribe(data => this.fileList = data);
   }
 
   readFile($event){
     this.filecontentservice.getFileContent($event).subscribe( content => this.filecontent = content )
   }
 
-  printFile(){
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "http://D:/git_tips.txt", true);
-    rawFile.onreadystatechange = function (){
-        if(rawFile.readyState === 4){
-            if(rawFile.status === 200 || rawFile.status == 0){
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
+  getContent(filename: string){
+      this.filecontentservice.getFromFileSystem(filename).subscribe( content => {this.filecontent = content;} );
+  }
+
+ /*
+ printFile(){
+     var rawFile = new XMLHttpRequest();
+     rawFile.open("GET", "file:\\\D:/git_tips.txt", true);
+     rawFile.onreadystatechange = function (){
+         if(rawFile.readyState === 4){
+             if(rawFile.status === 200 || rawFile.status == 0){
+                 var allText = rawFile.responseText;
+                 alert(allText);
+             }
+         }
     }
     rawFile.send(null);
-  }
+ }
+ */
 
   backHome(){
     this.router.navigate(['/pending']);
