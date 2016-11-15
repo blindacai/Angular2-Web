@@ -1,4 +1,4 @@
 export class Alert{
-    public id: string;
+    public alerts_id: string;
     public reference: string;
 }

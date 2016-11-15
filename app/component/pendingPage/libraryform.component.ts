@@ -25,7 +25,7 @@ import {AlertService} from "../../service/alert.service";
 
                   <select multiple id = "alerts" #alert
                       [(ngModel)]="library.addalerts" name = "alerts">
-                      <option *ngFor = "let r of alerts" [value] = "r.id">{{r.id}}: {{r.reference}}</option>
+                      <option *ngFor = "let r of alerts" [value] = "r.alerts_id">{{r.alerts_id}}: {{r.reference}}</option>
                   </select>
                   
                   <button type = "submit" 
@@ -42,10 +42,12 @@ import {AlertService} from "../../service/alert.service";
             `
 })
 
-export class LibraryFormComponent{
+export class LibraryFormComponent {
   status = ['Pending', 'Passed', 'Failed'];
-  alerts: Alert[] = this.alertService.getAlert();
   errorMsg: string;
+
+  @Input()
+  alerts: Alert[];
 
   @Input()
   library: Library;
@@ -57,8 +59,7 @@ export class LibraryFormComponent{
   reviewedLib = new EventEmitter<Library>();
 
   constructor(private libraryService: LibraryService,
-              private historyService: HistoryService,
-              private alertService: AlertService){}
+              private historyService: HistoryService){}
 
   update(){
     var update = this.libraryService.updateLibrary(this.library);

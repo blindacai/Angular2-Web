@@ -1,12 +1,17 @@
 import {Alert} from "./model/alert";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import {Http} from '@angular/http';
 
+@Injectable()
 export class AlertService{
-    alerts: Array<Alert> = [{id: "99", reference: "alertone"},
-                            {id: "88", reference: "alerttwo"},
-                            {id: "77", reference: "alertthree"},
-                            {id: "66", reference: "alertfour"}];
 
-    getAlert(){
-        return this.alerts;
+    private alerts_url = 'http://lcai01.phage.bcgsc.ca:8080/alerts';
+
+    constructor(private http: Http){ }
+
+    getAlert(): Observable<Alert[]>{
+        return this.http.get(this.alerts_url)
+                   .map(data => data.json());
     }
 }
