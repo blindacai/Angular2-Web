@@ -3,6 +3,9 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {LibraryService} from "../service/library.service";
 import {Library} from "../service/model/library";
 import {FileContentService} from "../service/fileContent.service";
+import {AlertService} from "../service/alert.service";
+import {Alert} from "../service/model/alert";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'review',
@@ -11,7 +14,8 @@ import {FileContentService} from "../service/fileContent.service";
               <div *ngIf = "lib">
                   <lib-list [library] = lib></lib-list>
               
-                  <library-form [library] = lib >
+                  <library-form [library] = lib
+                                [alerts] = alerts>
                   </library-form>
               </div>
               
@@ -22,12 +26,12 @@ import {FileContentService} from "../service/fileContent.service";
                   
                   <div *ngIf = "fileList">
                     <div *ngFor = "let file of fileList">
-                      <span (click) = "getContent(file)">{{file}}.txt</span>  
+                      <span (click) = "getContent(file)">{{file}}</span>  
                     </div>
                   </div>
                   
                   <br>
-                  File Content:
+                  File Content of {{selected}}:
                   <div *ngIf = "filecontent">
                     <div *ngFor = "let content of filecontent">
                       <p>{{content}}</p>
@@ -48,28 +52,42 @@ import {FileContentService} from "../service/fileContent.service";
 export class ReviewComponent implements OnInit{
   id: number;
   lib: Library = null;
+  selected: string;
 
   fileList: string[] = [];
   filecontent: string[] = [];
+  alerts: Alert[] = [];
+
+  subscription: Subscription;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private libraryservice: LibraryService,
-              private filecontentservice: FileContentService) {}
+              private filecontentservice: FileContentService,
+              private alertService: AlertService) {}
 
   ngOnInit(){
     this.route.params.subscribe(params => this.id = Number.parseInt(params["id"]));
-    this.libraryservice.getLibById(this.id).subscribe(data => this.lib = data);
-    //console.log(this.lib); // is null; async
 
+    this.libraryservice.getLibById(this.id).subscribe(data => this.lib = data);   //console.log(this.lib); // is null; async
     this.filecontentservice.getFileList().subscribe(data => this.fileList = data);
+    this.getAlerts()
   }
+
+
+  getAlerts(){
+    this.subscription = this.alertService.getAlert()
+        .subscribe(allalerts => {this.alerts = allalerts;
+          this.alerts.push({alerts_id: '', reference: "not choosing"});});
+  }
+
 
   readFile($event){
     this.filecontentservice.getFileContent($event).subscribe( content => this.filecontent = content )
   }
 
   getContent(filename: string){
+      this.selected = filename;
       this.filecontentservice.getFromFileSystem(filename).subscribe( content => {this.filecontent = content;} );
   }
 
