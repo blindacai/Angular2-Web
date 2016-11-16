@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {LibraryService} from "../service/library.service";
-import {Library} from "../service/library";
+import {Library} from "../service/model/library";
 import {LibraryLocal} from "../other/library.localservice";
 
 

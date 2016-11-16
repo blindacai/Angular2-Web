@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
-import {Library} from "../../service/library";
+import {Library} from "../../service/model/library";
 import {Subscription} from "rxjs";
 import {LibraryLocal} from "../../other/library.localservice";
+import {Alert} from "../../service/model/alert";
+import {AlertService} from "../../service/alert.service";
 
 
 @Component({
@@ -19,6 +21,7 @@ import {LibraryLocal} from "../../other/library.localservice";
                         
                         <library-form 
                             [library] = lib 
+                            [alerts] = alerts
                             (updatedLibs) = "updatedLibs($event)"
                             (reviewedLib) = "reviewedLib($event)">
                         </library-form>
@@ -45,6 +48,9 @@ import {LibraryLocal} from "../../other/library.localservice";
 
 export class PendingListComponent implements OnInit, OnDestroy {
     title: string = "This is Pending page";
+
+    alerts: Alert[] = [];
+
     libraries: Library[] = [];
     reviewed: Library[] = [];
 
@@ -52,9 +58,12 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getLibraryFromLocal();
+        this.getAlerts();
     }
 
-    constructor(private libraryService: LibraryService, private librarylocal: LibraryLocal) {}
+    constructor(private libraryService: LibraryService,
+                private librarylocal: LibraryLocal,
+                private alertService: AlertService) {}
 
 
     getLibraryFromDatabase() {
@@ -71,6 +80,12 @@ export class PendingListComponent implements OnInit, OnDestroy {
     getLibraryFromLocal() {
         this.subscription = this.libraryService.getLibraryFromLocal()
             .subscribe(libs => this.libraries = libs);
+    }
+
+    getAlerts(){
+        this.subscription = this.alertService.getAlert()
+                                             .subscribe(allalerts => {this.alerts = allalerts; 
+                                                                      this.alerts.push({alerts_id: '', reference: "not choosing"});});
     }
 
 

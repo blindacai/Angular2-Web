@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
-import {Library} from "../../service/library";
+import {Library} from "../../service/model/library";
 import {LibraryService} from "../../service/library.service";
 import {Router} from "@angular/router";
 
@@ -8,7 +8,13 @@ import {Router} from "@angular/router";
   template: `
               <span (click) = "onSelect(library)">{{library.id}}</span> 
               &nbsp;
-              {{library.lib}} &nbsp; {{library.sublib}} &nbsp; {{library.status}} &nbsp; {{library.comments}} &nbsp; {{library.addcomments}}
+              {{library.lib}} &nbsp; 
+              {{library.sublib}} &nbsp; 
+              {{library.status}} &nbsp; 
+              {{library.comments}} &nbsp; 
+              {{library.addcomments}} &nbsp;
+              {{library.alerts}} &nbsp;
+              {{library.addalerts}}
               &nbsp;
               
               <br>
@@ -22,12 +28,8 @@ export class PendingLibraryComponent implements OnInit{
   @Input()
   library: any;
 
-  //library: Library;
-
-  ngOnInit(): void {
-    //this.library = new Library(this.inputlibrary.id, this.inputlibrary.library_id, this.inputlibrary.status.qc0_status, this.inputlibrary.status.qc_comments, this.inputlibrary.addcomments);
-  }
-
+  ngOnInit(): void {}
+    
   constructor(
     private libraryService: LibraryService,
     private router: Router) { }
@@ -35,10 +37,4 @@ export class PendingLibraryComponent implements OnInit{
   onSelect(lib: Library){
     this.router.navigate(['/review', lib.id]);
   }
-
-  /*
-  updateLibrary(lib: Library, comments: string){
-    this.libraryService.updateLibrary(lib.id, comments).subscribe(data => this.libraries = data);
-  }
-  */
 }

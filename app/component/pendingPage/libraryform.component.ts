@@ -2,10 +2,12 @@
  * Created by linda on 2016-10-09.
  */
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Library} from "../../service/library";
+import {Library} from "../../service/model/library";
 import {LibraryService} from "../../service/library.service";
 import {HistoryService} from "../../service/history.service";
 import {Observable} from "rxjs";
+import {Alert} from "../../service/model/alert";
+import {AlertService} from "../../service/alert.service";
 
 @Component({
   selector: 'library-form',
@@ -20,6 +22,11 @@ import {Observable} from "rxjs";
 
                   <input type = "text" id = "comments"
                          [(ngModel)]="library.addcomments" name = "comments">
+
+                  <select multiple id = "alerts" #alert
+                      [(ngModel)]="library.addalerts" name = "alerts">
+                      <option *ngFor = "let r of alerts" [value] = "r.alerts_id">{{r.alerts_id}}: {{r.reference}}</option>
+                  </select>
                   
                   <button type = "submit" 
                           [disabled] = "local_status.value == 'Pending'">
@@ -35,9 +42,12 @@ import {Observable} from "rxjs";
             `
 })
 
-export class LibraryFormComponent{
+export class LibraryFormComponent {
   status = ['Pending', 'Passed', 'Failed'];
   errorMsg: string;
+
+  @Input()
+  alerts: Alert[];
 
   @Input()
   library: Library;
