@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'review',
   template: `
+              <!--
               <h3>this is a review page for {{id}}</h3>
               <div *ngIf = "lib">
                   <lib-list [library] = lib></lib-list>
@@ -46,6 +47,7 @@ import {Subscription} from "rxjs";
               <br>
 
               <button (click) = "backHome()">Back</button>
+              -->
             `
 })
 

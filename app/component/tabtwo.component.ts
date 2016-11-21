@@ -7,6 +7,7 @@ import {LibraryLocal} from "../other/library.localservice";
 @Component({
     selector: 'tab-two',
     template: `
+                <!--
                 {{title}}
                 <div *ngIf = "libraries">
                     <div *ngFor = "let lib of libraries">
@@ -15,7 +16,7 @@ import {LibraryLocal} from "../other/library.localservice";
                         <lib-list [library] = lib></lib-list>
                     </div>
                 </div>
-
+                -->
               `
     //templateUrl: 'app/view/navbar-body.html',
     //styleUrls: ['app/view/bootstrap.min.css']

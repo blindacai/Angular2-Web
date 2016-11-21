@@ -4,28 +4,27 @@ import {LibraryService} from "../../service/library.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'lib-list',
+  selector: '[lib-list]',
   template: `
-              <span (click) = "onSelect(library)">{{library.id}}</span> 
-              &nbsp;
-              {{library.lib}} &nbsp; 
-              {{library.sublib}} &nbsp; 
-              {{library.status}} &nbsp; 
-              {{library.comments}} &nbsp; 
-              {{library.addcomments}} &nbsp;
-              {{library.alerts}} &nbsp;
-              {{library.addalerts}}
-              &nbsp;
+              <td><span (click) = "onSelect(library)">{{library.id}}</span></td>
+              <td>{{library.lib}}</td>
+              <td>{{library.sublib}}</td>
+
+              <td>{{library.status}}</td>
+              <td>{{library.comments}}</td>
+              <td>{{library.addcomments}}</td>
+              <td>{{library.alerts}}</td>
+              <td>{{library.addalerts}}</td>
               
-              <br>
               <!-- <button (click) = "updateLibrary(lib, 'add something')">Update</button> -->
-              <router-outlet></router-outlet>
+              <!--<router-outlet></router-outlet>-->
+              
               `,
 })
 
 export class PendingLibraryComponent implements OnInit{
 
-  @Input()
+  @Input('lib-list')
   library: any;
 
   ngOnInit(): void {}

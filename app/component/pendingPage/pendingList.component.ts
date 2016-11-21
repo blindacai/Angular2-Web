@@ -13,20 +13,39 @@ import {AlertService} from "../../service/alert.service";
                 {{title}}
                 <br>
                 <button (click) = "getLibraryFromDatabase()">Get The Latest Pending List</button>
-                
+                <br>
+                <br>
                 <div *ngIf = "libraries">
-                    <div *ngFor = "let lib of libraries">
-                        <br>
-                        <lib-list [library] = lib></lib-list>
-                        
-                        <library-form 
-                            [library] = lib 
-                            [alerts] = alerts
-                            (updatedLibs) = "updatedLibs($event)"
-                            (reviewedLib) = "reviewedLib($event)">
-                        </library-form>
-                        
-                    </div>
+                <table class = "table table-bordered">
+                    <thead>
+                        <tr>
+                        <th>tab1</th>
+                        <th>tab2</th>
+                        <th>tab3</th>
+                        <th>tab4</th>
+                        <th>tab5</th>
+                        <th>tab6</th>
+                        <th>tab7</th>
+                        <th>tab8</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr *ngFor = "let lib of libraries" [lib-list] = "lib">
+
+                            <!--<lib-list [library] = lib></lib-list>-->
+                            
+                            <!--
+                            <library-form 
+                                [library] = lib 
+                                [alerts] = alerts
+                                (updatedLibs) = "updatedLibs($event)"
+                                (reviewedLib) = "reviewedLib($event)">
+                            </library-form>
+                            -->
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
 
                 <br>
