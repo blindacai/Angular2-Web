@@ -19,7 +19,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               `
 })
 
-export class AlertsField implements OnInit{
+export class AlertsField implements OnInit, OnDestroy{
     subscription: Subscription;
 
     @Input('alerts-field')
@@ -44,5 +44,11 @@ export class AlertsField implements OnInit{
 
     onChange(selected: string){
         this.updateLib.addalerts.push(selected);
+    }
+
+    ngOnDestroy(){
+        if(this.subscription){
+            this.subscription.unsubscribe();
+        }
     }
 }

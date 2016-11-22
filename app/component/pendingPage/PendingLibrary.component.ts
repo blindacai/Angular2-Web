@@ -15,7 +15,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td [alerts-field] = "library.alerts" [updateLib] = "updateLib"></td>
               
               <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib"></td>
-              
+
               <router-outlet></router-outlet>
               `,
 })

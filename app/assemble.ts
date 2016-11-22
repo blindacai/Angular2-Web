@@ -12,14 +12,13 @@ import {TabThreeComponent} from "./component/tabthree.component";
 import {ReviewComponent} from "./component/review.component";
 import {PendingListComponent} from "./component/pendingPage/pendingList.component";
 import {PendingLibraryComponent} from "./component/pendingPage/PendingLibrary.component";
-import {LibraryFormComponent} from "./component/pendingPage/libraryform.component";
 import {SplitPipe} from "./pipe/split.pipe";
 import {IdField} from "./component/pendingPage/Id.component";
 import {LibField} from "./component/pendingPage/lib.component";
 import {SublibField} from "./component/pendingPage/sublib.component";
 import {StatusField} from "./component/pendingPage/status.component";
 import {CommentsField} from "./component/pendingPage/comments.component";
-import {UpdateButton} from "./component/pendingPage/updateLib.component";
+import {UpdateButton} from "./component/pendingPage/updateLibButton.component";
 import {AlertsField} from "./component/pendingPage/alerts.component";
 
 export const exampleComponents = [
@@ -50,8 +49,7 @@ export const pendingComponents = [
     ReviewComponent,
 
     PendingListComponent,
-    PendingLibraryComponent,
-    LibraryFormComponent
+    PendingLibraryComponent
 ];
 
 export const rowComponents = [
