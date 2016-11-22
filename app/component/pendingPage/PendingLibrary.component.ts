@@ -8,10 +8,9 @@ import {Router} from "@angular/router";
   template: `
               <td [id-field] = "library.id"></td>
               <td [lib-field] = "library.lib"></td>
-              <td>{{library.sublib}}</td>
-              <td>{{library.status}}
-              </td>
-              <td>{{library.comments}}</td>
+              <td [sublib-field] = "library.sublib"></td>
+              <td [status-field] = "library.status"></td>
+              <td [comments-field] = "library.comments"></td>
               <td>{{library.addcomments}}</td>
               <td>{{library.alerts}}</td>
               <td>{{library.addalerts}}</td>

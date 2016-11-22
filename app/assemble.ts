@@ -16,6 +16,9 @@ import {LibraryFormComponent} from "./component/pendingPage/libraryform.componen
 import {SplitPipe} from "./pipe/split.pipe";
 import {IdField} from "./component/pendingPage/Id.component";
 import {LibField} from "./component/pendingPage/lib.component";
+import {SublibField} from "./component/pendingPage/sublib.component";
+import {StatusField} from "./component/pendingPage/status.component";
+import {CommentsField} from "./component/pendingPage/comments.component";
 
 export const exampleComponents = [
     // form
@@ -46,8 +49,13 @@ export const pendingComponents = [
 
     PendingListComponent,
     PendingLibraryComponent,
-    LibraryFormComponent,
-
-    IdField,
-    LibField
+    LibraryFormComponent
 ];
+
+export const rowComponents = [
+    IdField,
+    LibField,
+    SublibField,
+    StatusField,
+    CommentsField
+]

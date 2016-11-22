@@ -17,7 +17,7 @@ import {formatLibService} from "./service/formatLib.service";
 import {LibraryLocal} from "./other/library.localservice";
 
 // export const
-import {exampleComponents, pendingComponents} from "./assemble";
+import {exampleComponents, pendingComponents, rowComponents} from "./assemble";
 import { routing } from './app.route'
 import {FileContentService} from "./service/fileContent.service";
 import {AlertService} from "./service/alert.service";
@@ -38,7 +38,8 @@ import {AlertService} from "./service/alert.service";
   declarations: [
       ProjectTitleComponent,
       ...pendingComponents,
-      ...exampleComponents
+      ...exampleComponents,
+      ...rowComponents
   ],
 
   providers: [LibraryService,
