@@ -1,4 +1,4 @@
 export class updateLibrary {
     public addcomments: string;
-    public addalerts: string;
+    public addalerts: string[];
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Router} from "@angular/router";
+import {Library} from "../../service/model/library";
 
 @Component({
     selector: '[id-field]',

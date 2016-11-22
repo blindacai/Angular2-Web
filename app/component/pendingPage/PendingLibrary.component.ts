@@ -12,8 +12,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td [sublib-field] = "library.sublib"></td>
               <td [status-field] = "library"></td>
               <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
-              <td>{{library.addcomments}}</td>
-              <td>{{library.alerts}}</td>
+              <td [alerts-field] = "library.alerts" [updateLib] = "updateLib"></td>
               
               <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib"></td>
               
@@ -24,11 +23,11 @@ import {updateLibrary} from "../../service/model/updateLibrary";
 export class PendingLibraryComponent implements OnInit{
 
   @Input('pending-lib')
-  library: any;
+  library: Library;
 
   updateLib: updateLibrary = {
     addcomments: null,
-    addalerts: null
+    addalerts: []
   };
 
   constructor(

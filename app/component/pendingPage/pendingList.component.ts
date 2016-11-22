@@ -25,8 +25,7 @@ import {AlertService} from "../../service/alert.service";
                         <th>status</th>
                         <th>comments</th>
                         <th>alerts</th>
-                        <th>tab7</th>
-                        <th>tab8</th>
+                        <th></th>
                         </tr>
                     </thead>
                     
@@ -59,6 +58,13 @@ import {AlertService} from "../../service/alert.service";
                     </div>
                     <p>For details, go to History tab</p>
                 </div>
+
+                  <!--
+                  {{testtwo}}
+                  <select id = "status" #local_status name = "status" (change) = "onChange(local_status.value)">
+                    <option *ngFor = "let s of status" [value] = "s">{{s}}</option>
+                  </select>
+                  -->
                 
                 <br>
                 <dialogue></dialogue>
@@ -78,6 +84,9 @@ export class PendingListComponent implements OnInit, OnDestroy {
     reviewed: Library[] = []
 
     test: Library;
+    testtwo: string[] = [];
+
+    status = ['Pending', 'Passed', 'Failed'];
 
     subscription: Subscription;
 
@@ -105,6 +114,10 @@ export class PendingListComponent implements OnInit, OnDestroy {
         this.subscription = this.alertService.getAlert()
                                              .subscribe(allalerts => {this.alerts = allalerts; 
                                                                       this.alerts.push({alerts_id: '', reference: "not choosing"});});
+    }
+
+    onChange(selected: string){
+        this.testtwo.push(selected);
     }
 
 
