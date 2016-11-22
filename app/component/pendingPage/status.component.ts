@@ -1,16 +1,25 @@
 import { Component, Input } from '@angular/core';
+import {Library} from "../../service/model/library";
 
 @Component({
     selector: '[status-field]',
     template: `
-                <td>{{statusfield}}</td>
+                <td>{{library.status}}
+                    <br>
+                    <select id = "status" #local_status
+                        [(ngModel)]="library.status" name = "status">
+                        <option *ngFor = "let s of status" [value] = "s">{{s}}</option>
+                    </select>
+                </td>
               `
 })
 
 export class StatusField{
 
     @Input('status-field')
-    statusfield: string;
+    library: Library;
+
+    status = ['Pending', 'Passed', 'Failed'];
 }
 
 

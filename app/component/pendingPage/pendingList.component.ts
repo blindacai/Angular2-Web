@@ -35,18 +35,22 @@ import {AlertService} from "../../service/alert.service";
 
                             <!--<lib-list [library] = lib></lib-list>-->
                             
-                            <!--
-                            <library-form 
-                                [library] = lib 
-                                [alerts] = alerts
-                                (updatedLibs) = "updatedLibs($event)"
-                                (reviewedLib) = "reviewedLib($event)">
-                            </library-form>
-                            -->
                         
                     </tbody>
                 </table>
+                    
                 </div>
+                
+                <!--
+                <div *ngIf = "test">                
+                <library-form 
+                    [library] = test
+                    [alerts] = alerts
+                    (updatedLibs) = "updatedLibs($event)"
+                    (reviewedLib) = "reviewedLib($event)">
+                </library-form>
+                </div>
+                -->
 
                 <br>
                 <div *ngIf = "reviewed.length > 0">
@@ -73,15 +77,16 @@ export class PendingListComponent implements OnInit, OnDestroy {
     libraries: Library[] = [];
     reviewed: Library[] = []
 
+    test: Library;
+
     subscription: Subscription;
 
     ngOnInit(): void {
         this.getLibraryFromLocal();
-        this.getAlerts();
+        //this.getAlerts();
     }
 
     constructor(private libraryService: LibraryService,
-                private librarylocal: LibraryLocal,
                 private alertService: AlertService) {}
 
 
@@ -90,15 +95,10 @@ export class PendingListComponent implements OnInit, OnDestroy {
             .subscribe(libs => this.libraries = libs);
     }
 
-/*
-    getLibraryFromLocal() {
-        this.libraries = this.librarylocal.getLibs();
-    }
-*/
 
     getLibraryFromLocal() {
         this.subscription = this.libraryService.getLibraryFromLocal()
-            .subscribe(libs => this.libraries = libs);
+            .subscribe(libs => {this.libraries = libs; this.test = libs[0]});
     }
 
     getAlerts(){

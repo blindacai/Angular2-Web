@@ -9,13 +9,13 @@ import {LibraryLocal} from "../other/library.localservice";
 
 @Injectable()
 export class LibraryService {
-  //private dataurl_database = 'http://localhost:8080/pending_db';
-  //private dataurl_local = 'http://localhost:8080/pending_local';
-  //private dataurl_lib = 'http://localhost:8080/library';
+  private dataurl_database = 'http://localhost:8080/pending_db';
+  private dataurl_local = 'http://localhost:8080/pending_local';
+  private dataurl_lib = 'http://localhost:8080/library';
 
-  private dataurl_database = 'http://lcai01.phage.bcgsc.ca:8080/pending_db';
-  private dataurl_local = 'http://lcai01.phage.bcgsc.ca:8080/pending_local';
-  private dataurl_lib = 'http://lcai01.phage.bcgsc.ca:8080/library';
+  //private dataurl_database = 'http://lcai01.phage.bcgsc.ca:8080/pending_db';
+  //private dataurl_local = 'http://lcai01.phage.bcgsc.ca:8080/pending_local';
+  //private dataurl_lib = 'http://lcai01.phage.bcgsc.ca:8080/library';
 
   //private dataurl_database = 'http://Bioqcdev01.bcgsc.ca:8080/pending_db';
   //private dataurl_local = 'http://Bioqcdev01.bcgsc.ca:8080/pending_local';

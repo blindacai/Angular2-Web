@@ -23,10 +23,12 @@ import {AlertService} from "../../service/alert.service";
                   <input type = "text" id = "comments"
                          [(ngModel)]="library.addcomments" name = "comments">
 
+                  <!--
                   <select multiple id = "alerts" #alert
                       [(ngModel)]="library.addalerts" name = "alerts">
                       <option *ngFor = "let r of alerts" [value] = "r.alerts_id">{{r.alerts_id}}: {{r.reference}}</option>
                   </select>
+                  -->
                   
                   <button type = "submit" 
                           [disabled] = "local_status.value == 'Pending'">

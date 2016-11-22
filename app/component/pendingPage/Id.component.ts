@@ -4,14 +4,14 @@ import {Router} from "@angular/router";
 @Component({
     selector: '[id-field]',
     template: `
-                <td align = "center"><span (click) = "onSelect(idfield)">{{idfield}}</span></td>
+                <td align = "center"><span (click) = "onSelect(library.id)">{{library.id}}</span></td>
               `
 })
 
 export class IdField{
 
     @Input('id-field')
-    idfield: number;
+    library: Library;
 
     constructor( private router: Router) { }
 

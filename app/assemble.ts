@@ -19,6 +19,7 @@ import {LibField} from "./component/pendingPage/lib.component";
 import {SublibField} from "./component/pendingPage/sublib.component";
 import {StatusField} from "./component/pendingPage/status.component";
 import {CommentsField} from "./component/pendingPage/comments.component";
+import {UpdateButton} from "./component/pendingPage/updateLib.component";
 
 export const exampleComponents = [
     // form
@@ -57,5 +58,7 @@ export const rowComponents = [
     LibField,
     SublibField,
     StatusField,
-    CommentsField
+    CommentsField,
+
+    UpdateButton
 ]
