@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'review',
   template: `
+                hi
               <!--
               <h3>this is a review page for {{id}}</h3>
               <div *ngIf = "lib">

@@ -19,19 +19,19 @@ import {AlertService} from "../../service/alert.service";
                 <table class = "table table-bordered">
                     <thead>
                         <tr>
-                        <th>tab1</th>
-                        <th>tab2</th>
-                        <th>tab3</th>
-                        <th>tab4</th>
-                        <th>tab5</th>
-                        <th>tab6</th>
+                        <th>id</th>
+                        <th>lib</th>
+                        <th>sublib</th>
+                        <th>status</th>
+                        <th>comments</th>
+                        <th>alerts</th>
                         <th>tab7</th>
                         <th>tab8</th>
                         </tr>
                     </thead>
                     
                     <tbody>
-                        <tr *ngFor = "let lib of libraries" [lib-list] = "lib">
+                        <tr *ngFor = "let lib of libraries" [pending-lib] = "lib"></tr>
 
                             <!--<lib-list [library] = lib></lib-list>-->
                             
@@ -43,7 +43,7 @@ import {AlertService} from "../../service/alert.service";
                                 (reviewedLib) = "reviewedLib($event)">
                             </library-form>
                             -->
-                        </tr>
+                        
                     </tbody>
                 </table>
                 </div>
@@ -71,7 +71,7 @@ export class PendingListComponent implements OnInit, OnDestroy {
     alerts: Alert[] = [];
 
     libraries: Library[] = [];
-    reviewed: Library[] = [];
+    reviewed: Library[] = []
 
     subscription: Subscription;
 

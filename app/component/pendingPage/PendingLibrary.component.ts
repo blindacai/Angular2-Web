@@ -4,28 +4,29 @@ import {LibraryService} from "../../service/library.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: '[lib-list]',
+  selector: '[pending-lib]',
   template: `
-              <td><span (click) = "onSelect(library)">{{library.id}}</span></td>
-              <td>{{library.lib}}</td>
+              <td [id-field] = "library.id"></td>
+              <td [lib-field] = "library.lib"></td>
               <td>{{library.sublib}}</td>
-
-              <td>{{library.status}}</td>
+              <td>{{library.status}}
+              </td>
               <td>{{library.comments}}</td>
               <td>{{library.addcomments}}</td>
               <td>{{library.alerts}}</td>
               <td>{{library.addalerts}}</td>
               
-              <!-- <button (click) = "updateLibrary(lib, 'add something')">Update</button> -->
-              <!--<router-outlet></router-outlet>-->
+              <router-outlet></router-outlet>
               
               `,
 })
 
 export class PendingLibraryComponent implements OnInit{
 
-  @Input('lib-list')
+  @Input('pending-lib')
   library: any;
+
+  status = ['Pending', 'Passed', 'Failed'];
 
   ngOnInit(): void {}
     
