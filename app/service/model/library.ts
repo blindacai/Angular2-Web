@@ -6,7 +6,5 @@ export class Library {
     public sublib: string;
     public status: string;
     public comments: string;
-    public addcomments: string;
     public alerts: string;
-    public addalerts: string;
 }

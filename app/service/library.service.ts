@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import {Library} from "./model/library";
 import {formatLibService} from "./formatLib.service";
 import {LibraryLocal} from "../other/library.localservice";
+import {updateLibrary} from "./model/updateLibrary";
 
 @Injectable()
 export class LibraryService {
@@ -49,14 +50,14 @@ export class LibraryService {
   }
 
 
-  updateLibrary(lib: Library): Observable<Library[]> {
-    if(!this.doUpdate(lib)){
+  updateLibrary(lib: Library, newFiled: updateLibrary): Observable<Library[]> {
+    if(!this.doUpdate(lib, newFiled)){
       return null;
     }
     else{
       let body = JSON.stringify( {'id': lib.id,
                                   'status': lib.status,
-                                  'addcomments': (this.autoAppend(lib)? ';Manual Review: ':';') + lib.addcomments} );
+                                  'addcomments': (this.autoAppend(lib)? ';Manual Review: ':';') + newFiled.addcomments} );
 
       let headers = new Headers({'Content-Type': 'application/json'});
       let options = new RequestOptions({headers: headers});
@@ -67,15 +68,15 @@ export class LibraryService {
     }
   }
 
-  private doUpdate(lib: Library): boolean{
-    if(lib.addcomments == null){
+  private doUpdate(lib: Library, newField: updateLibrary): boolean{
+    if(newField.addcomments == null){
       if ( window.confirm("No further comments?") ){
-        lib.addcomments = "No further comments";
+        newField.addcomments = "No further comments";
         return true;
       }
     }
     else{
-      if( window.confirm("Status: " + lib.status + ";" + "Comments: " + lib.addcomments + "?") ){
+      if( window.confirm("Status: " + lib.status + ";" + "Comments: " + newField.addcomments + "?") ){
         return true;
       }
     }

@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {Library} from "../../service/model/library";
 import {Subscription} from "rxjs";
-import {LibraryLocal} from "../../other/library.localservice";
-import {Alert} from "../../service/model/alert";
 import {AlertService} from "../../service/alert.service";
 
 
@@ -13,22 +11,24 @@ import {AlertService} from "../../service/alert.service";
                 {{title}}
                 <br>
                 <button (click) = "getLibraryFromDatabase()">Get The Latest Pending List</button>
-                
+                <br>
+                <br>
                 <div *ngIf = "libraries">
-                    <div *ngFor = "let lib of libraries">
-                        <br>
-                        <lib-list [library] = lib></lib-list>
+                    <table class = "table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>id</th> <th>lib</th ><th>sublib</th> <th>status</th> <th>comments</th> <th>alerts</th>
+                                <th></th>
+                            </tr>
+                        </thead>
                         
-                        <library-form 
-                            [library] = lib 
-                            [alerts] = alerts
-                            (updatedLibs) = "updatedLibs($event)"
-                            (reviewedLib) = "reviewedLib($event)">
-                        </library-form>
-                        
-                    </div>
+                        <tbody>
+                            <tr *ngFor = "let lib of libraries" [pending-lib] = "lib" (updatedLibraries) = "updatedLibs($event)"></tr>
+                        </tbody>
+                    </table>
                 </div>
-
+                
+                
                 <br>
                 <div *ngIf = "reviewed.length > 0">
                     <div *ngFor = "let lib of reviewed">
@@ -36,10 +36,11 @@ import {AlertService} from "../../service/alert.service";
                     </div>
                     <p>For details, go to History tab</p>
                 </div>
-                
+               
                 <br>
-                <dialogue></dialogue>
                 
+                
+                <!--<dialogue></dialogue>-->
                 <!--<hero-form></hero-form>-->
               `
     //templateUrl: 'app/view/navbar-body.html',
@@ -49,21 +50,18 @@ import {AlertService} from "../../service/alert.service";
 export class PendingListComponent implements OnInit, OnDestroy {
     title: string = "This is Pending page";
 
-    alerts: Alert[] = [];
-
     libraries: Library[] = [];
     reviewed: Library[] = [];
+
+    status = ['Pending', 'Passed', 'Failed'];
 
     subscription: Subscription;
 
     ngOnInit(): void {
         this.getLibraryFromLocal();
-        this.getAlerts();
     }
 
-    constructor(private libraryService: LibraryService,
-                private librarylocal: LibraryLocal,
-                private alertService: AlertService) {}
+    constructor(private libraryService: LibraryService) {}
 
 
     getLibraryFromDatabase() {
@@ -71,23 +69,11 @@ export class PendingListComponent implements OnInit, OnDestroy {
             .subscribe(libs => this.libraries = libs);
     }
 
-/*
-    getLibraryFromLocal() {
-        this.libraries = this.librarylocal.getLibs();
-    }
-*/
 
     getLibraryFromLocal() {
         this.subscription = this.libraryService.getLibraryFromLocal()
-            .subscribe(libs => this.libraries = libs);
+            .subscribe(libs => {this.libraries = libs});
     }
-
-    getAlerts(){
-        this.subscription = this.alertService.getAlert()
-                                             .subscribe(allalerts => {this.alerts = allalerts; 
-                                                                      this.alerts.push({alerts_id: '', reference: "not choosing"});});
-    }
-
 
     updatedLibs(libs: Library[]) {
         this.libraries = libs;

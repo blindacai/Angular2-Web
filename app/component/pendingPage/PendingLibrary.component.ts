@@ -1,40 +1,43 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import {Library} from "../../service/model/library";
-import {LibraryService} from "../../service/library.service";
 import {Router} from "@angular/router";
+import {updateLibrary} from "../../service/model/updateLibrary";
 
 @Component({
-  selector: 'lib-list',
+  selector: '[pending-lib]',
   template: `
-              <span (click) = "onSelect(library)">{{library.id}}</span> 
-              &nbsp;
-              {{library.lib}} &nbsp; 
-              {{library.sublib}} &nbsp; 
-              {{library.status}} &nbsp; 
-              {{library.comments}} &nbsp; 
-              {{library.addcomments}} &nbsp;
-              {{library.alerts}} &nbsp;
-              {{library.addalerts}}
-              &nbsp;
+              <td [id-field] = "library"></td>
+              <td [lib-field] = "library.lib"></td>
+              <td [sublib-field] = "library.sublib"></td>
+              <td [status-field] = "library"></td>
+              <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
+              <td [alerts-field] = "library.alerts" [updateLib] = "updateLib"></td>
               
-              <br>
-              <!-- <button (click) = "updateLibrary(lib, 'add something')">Update</button> -->
+              <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib" (updatedLibs) = "updatedLibs($event)"></td>
+
               <router-outlet></router-outlet>
               `,
 })
 
 export class PendingLibraryComponent implements OnInit{
 
-  @Input()
-  library: any;
+  @Input('pending-lib')
+  library: Library;
 
-  ngOnInit(): void {}
-    
+  updateLib: updateLibrary = {
+    addcomments: null,
+    addalerts: []
+  };
+
+  @Output()
+  updatedLibraries = new EventEmitter<Library[]>();
+
   constructor(
-    private libraryService: LibraryService,
-    private router: Router) { }
+      private router: Router) { }
 
-  onSelect(lib: Library){
-    this.router.navigate(['/review', lib.id]);
+  ngOnInit(){}
+
+  updatedLibs(libs: Library[]) {
+    this.updatedLibraries.emit(libs);
   }
 }
