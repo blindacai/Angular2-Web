@@ -9,7 +9,7 @@ import {HistoryService} from "../../service/history.service";
     template: `
                   <td align = "center">
                       <button type = "submit" 
-                              [disabled] = "libtoupdate.status == 'Pending'"
+                              [disabled] = "libtoupdate.status == 'Passed'"
                               (click) = "updateLib(libtoupdate, newfieldvalue)">
                         update
                       </button>
@@ -31,6 +31,9 @@ export class UpdateButton{
     @Output()
     reviewedLib = new EventEmitter<Library>();
 
+    @Output()
+    updatedLibs = new EventEmitter<Library[]>();
+
     errorMsg: string;
 
     constructor(private libraryService: LibraryService,
@@ -39,19 +42,22 @@ export class UpdateButton{
     }
 
     updateLib(libtoupdate: Library, newfieldvalue: updateLibrary){
-        this.reviewedLib.emit(libtoupdate);
-        /*
-        var update = this.libraryService.updateLibrary(libtoupdate);
+        var update = this.libraryService.updateLibrary(libtoupdate, newfieldvalue);
         if(!update){
             return;
         }
         else{
-            update.subscribe( data => {//this.updatedLibs.emit(data);
-                    this.reviewedLib.emit(this.libtoupdate);
-                    this.historyService.addReviewedLibrary(this.libtoupdate)},
+            update.subscribe( data => {
+                    this.updatedLibs.emit(data);
+                    //this.reviewedLib.emit(this.libtoupdate);
+                    this.historyService.addReviewedLibrary( data.filter(this.findLib.bind(this))[0] ); },
                 error => {this.errorMsg = error});
         }
-        */
     }
+
+    private findLib(data: Library){
+        return data.id == this.libtoupdate.id;
+    }
+
 }
 

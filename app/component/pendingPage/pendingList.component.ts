@@ -23,7 +23,7 @@ import {AlertService} from "../../service/alert.service";
                         </thead>
                         
                         <tbody>
-                            <tr *ngFor = "let lib of libraries" [pending-lib] = "lib"></tr>
+                            <tr *ngFor = "let lib of libraries" [pending-lib] = "lib" (updatedLibraries) = "updatedLibs($event)"></tr>
                         </tbody>
                     </table>
                 </div>
@@ -59,11 +59,9 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getLibraryFromLocal();
-        //this.getAlerts();
     }
 
-    constructor(private libraryService: LibraryService,
-                private alertService: AlertService) {}
+    constructor(private libraryService: LibraryService) {}
 
 
     getLibraryFromDatabase() {
