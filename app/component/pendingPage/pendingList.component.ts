@@ -28,18 +28,6 @@ import {AlertService} from "../../service/alert.service";
                     </table>
                 </div>
                 
-                
-                <br>
-                <div *ngIf = "reviewed.length > 0">
-                    <div *ngFor = "let lib of reviewed">
-                        {{lib.id}} has been reviewed
-                    </div>
-                    <p>For details, go to History tab</p>
-                </div>
-               
-                <br>
-                
-                
                 <!--<dialogue></dialogue>-->
                 <!--<hero-form></hero-form>-->
               `
@@ -79,9 +67,11 @@ export class PendingListComponent implements OnInit, OnDestroy {
         this.libraries = libs;
     }
 
+    /*
     reviewedLib(lib: Library) {
         this.reviewed.push(lib);
     }
+    */
 
     ngOnDestroy(){
         if(this.subscription){
