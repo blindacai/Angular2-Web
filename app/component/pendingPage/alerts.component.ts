@@ -3,11 +3,12 @@ import {AlertService} from "../../service/alert.service";
 import {Subscription} from "rxjs";
 import {Alert} from "../../service/model/alert";
 import {updateLibrary} from "../../service/model/updateLibrary";
+import {Library} from "../../service/model/library";
 
 @Component({
     selector: '[alerts-field]',
     template: `
-                <td>{{alertsField}} <addalerts-list [updateLib] = "updateLib"></addalerts-list>
+                <td>{{library.alerts}} <addalerts-list [updateLib] = "updateLib"></addalerts-list>
                     <br>
                     <select id = "alerts" #local_alerts name = "alerts"
                         (change) = "onChange(local_alerts.value)">
@@ -23,7 +24,7 @@ export class AlertsField implements OnInit, OnDestroy{
     subscription: Subscription;
 
     @ Input('alerts-field')
-    alertsfield: string;
+    library: Library;
 
     @Input()
     updateLib: updateLibrary;
@@ -43,16 +44,38 @@ export class AlertsField implements OnInit, OnDestroy{
     }
 
     onChange(selected: string){
-        let alert = this.lookup(selected.split(":")[0], this.alerts);
-        this.updateLib.addalerts.push(alert);
+        let alert = this.lookup(selected.split(":")[0]);
+
+        if(alert.alerts_id == "-1"){
+            this.updateLib.addalerts = [];
+        }
+        else if(! (this.checkDuplicateold(alert) || this.checkDuplicatenew(alert)) ){
+            this.updateLib.addalerts.push(alert);
+        }
     }
 
-    private lookup(selected: string, alertstable: Alert[]): Alert{
-        for(let r of alertstable){
+    private lookup(selected: string): Alert{
+        for(let r of this.alerts){
             if(r.alerts_id == selected){
                 return r;
             }
         }
+    }
+
+    private checkDuplicatenew(alert: Alert): boolean{
+        for(let r of this.updateLib.addalerts){
+            if(r.alerts_id == alert.alerts_id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private checkDuplicateold(alert: Alert): boolean{
+        if(this.library.alerts != null){
+            return this.library.alerts.includes(alert.alerts_id);
+        }
+        else return false;
     }
 
     processAlert(r: Alert): string{

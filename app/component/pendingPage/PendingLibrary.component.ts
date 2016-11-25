@@ -11,7 +11,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td [sublib-field] = "library.sublib"></td>
               <td [status-field] = "library"></td>
               <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
-              <td [alerts-field] = "library.alerts" [updateLib] = "updateLib"></td>
+              <td [alerts-field] = "library" [updateLib] = "updateLib"></td>
               
               <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib" (updatedLibs) = "updatedLibs($event)"></td>
 

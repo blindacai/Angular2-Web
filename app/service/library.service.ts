@@ -7,6 +7,7 @@ import {Library} from "./model/library";
 import {formatLibService} from "./formatLib.service";
 import {LibraryLocal} from "../other/library.localservice";
 import {updateLibrary} from "./model/updateLibrary";
+import {Alert} from "./model/alert";
 
 @Injectable()
 export class LibraryService {
@@ -57,7 +58,8 @@ export class LibraryService {
     else{
       let body = JSON.stringify( {'id': lib.id,
                                   'status': lib.status,
-                                  'addcomments': (this.autoAppend(lib)? ';Manual Review: ':';') + newFiled.addcomments} );
+                                  'addcomments': (this.autoAppend(lib)? ';Manual Review: ':';') + newFiled.addcomments,
+                                  'addalerts': this.formatAlerts(lib.alerts, newFiled.addalerts)} );
 
       let headers = new Headers({'Content-Type': 'application/json'});
       let options = new RequestOptions({headers: headers});
@@ -72,15 +74,21 @@ export class LibraryService {
     if(newField.addcomments == null){
       if ( window.confirm("No further comments?") ){
         newField.addcomments = "No further comments";
-        return true;
+      }
+      else{
+        return false;
       }
     }
-    else{
-      if( window.confirm("Status: " + lib.status + ";" + "Comments: " + newField.addcomments + "?") ){
-        return true;
-      }
+
+    if( window.confirm("Status: " + lib.status + "\n" +
+                       "Comments: " + newField.addcomments + "\n" +
+                       "Alerts: " + this.formatAlerts(null, newField.addalerts) + "\n" +
+                       "Confirm ?")){
+      return true;
     }
-    return false;
+    else {
+      return false;
+    }
   }
 
   private autoAppend(lib: Library): boolean{
@@ -90,8 +98,18 @@ export class LibraryService {
       return true;
   }
 
+  private formatAlerts(alerts: string, addalerts: Alert[]): string{
+    if(addalerts.length == 0){
+      return "";
+    }
+    else{
+      return ( (alerts == null)? "" : ";" ) +
+                addalerts[0].alerts_id +
+                this.formatAlerts("has", addalerts.slice(1, addalerts.length));
+    }
+  }
+
   private handleError(error: any) {
-    // In a real world app, we might use a remote logging infrastructure...
     let errorMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errorMsg);
