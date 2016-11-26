@@ -21,6 +21,7 @@ export class formatLibService{
                                 status: lib.status.qc0_status,
                                 comments: lib.status.qc_comments,
                                 alerts: lib.status.alerts || null,
+                                library_id: lib.library_id
                                 };
         return library;
     }

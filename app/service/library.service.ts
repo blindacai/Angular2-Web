@@ -87,6 +87,9 @@ export class LibraryService {
       return true;
     }
     else {
+        lib.status = "Pending";
+        newField.addcomments = null;
+        newField.addalerts = [];
       return false;
     }
   }

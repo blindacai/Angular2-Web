@@ -7,4 +7,6 @@ export class Library {
     public status: string;
     public comments: string;
     public alerts: string;
+
+    public library_id: string;
 }

@@ -10,7 +10,30 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'review',
   template: `
-                hi
+                <div *ngIf = "library">
+                    <table class = "table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>id</th> <th>lib</th ><th>sublib</th> <th>status</th> <th>comments</th> <th>alerts</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr [pending-lib] = "library" (updatedLibraries) = "updatedLibs($event)"></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <br>
+                
+                <button (click) = "backHome()">Back</button>
+                
+                <div *ngIf = "library">
+                    <file-list [library] = "library"></file-list>
+                </div>
+                
+                
               <!--
               <h3>this is a review page for {{id}}</h3>
               <div *ngIf = "lib">
@@ -54,6 +77,40 @@ import {Subscription} from "rxjs";
 
 export class ReviewComponent implements OnInit{
   id: number;
+  library: Library;
+
+  fileList: string[] = [];
+  filecontent: string[] = [];
+
+  ngOnInit(){
+    this.route.params.subscribe(params => this.id = Number.parseInt(params["id"]));
+    this.libraryservice.getLibById(this.id).subscribe(data => this.library = data);
+
+    //this.filecontentservice.getFileList(this.library).subscribe(data => this.fileList = data);
+
+  }
+
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private libraryservice: LibraryService,
+              private filecontentservice: FileContentService) {}
+
+
+  backHome(){
+    this.router.navigate(['/pending']);
+  }
+
+
+  readFile($event){
+    this.filecontentservice.getFileContent($event).subscribe( content => this.filecontent = content )
+  }
+
+  getContent(filename: string){
+    this.filecontentservice.getFromFileSystem(filename).subscribe( content => {this.filecontent = content;} );
+  }
+
+  /*
+  id: number;
   lib: Library = null;
   selected: string;
 
@@ -94,23 +151,8 @@ export class ReviewComponent implements OnInit{
       this.filecontentservice.getFromFileSystem(filename).subscribe( content => {this.filecontent = content;} );
   }
 
- /*
- printFile(){
-     var rawFile = new XMLHttpRequest();
-     rawFile.open("GET", "file:\\\D:/git_tips.txt", true);
-     rawFile.onreadystatechange = function (){
-         if(rawFile.readyState === 4){
-             if(rawFile.status === 200 || rawFile.status == 0){
-                 var allText = rawFile.responseText;
-                 alert(allText);
-             }
-         }
-    }
-    rawFile.send(null);
- }
- */
-
   backHome(){
     this.router.navigate(['/pending']);
   }
+  */
 }
