@@ -6,17 +6,15 @@ import {updateLibrary} from "../../service/model/updateLibrary";
 @Component({
   selector: '[pending-lib]',
   template: `
-              <td [id-field] = "library"></td>
-              <td [lib-field] = "library.lib"></td>
-              <td [sublib-field] = "library.sublib"></td>
-              <td [status-field] = "library"></td>
-              <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
-              <td [alerts-field] = "library" [updateLib] = "updateLib"></td>
+              <td class="col-md-1" [id-field] = "library"></td>
+              <td class="col-md-1" [lib-field] = "library.lib"></td>
+              <td class="col-md-1" [sublib-field] = "library.sublib"></td>
+              <td  class="col-md-1" [status-field] = "library"></td>
+              <td class="col-md-3" [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
+              <td class="col-md-3" [alerts-field] = "library" [updateLib] = "updateLib"></td>
               
-              <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib" (updatedLibs) = "updatedLibs($event)"></td>
-
-              <router-outlet></router-outlet>
-              `,
+              <td class="col-md-1" align = "center" [update-button] = "library" [newfieldvalue] = "updateLib" (updatedLibs) = "updatedLibs($event)"></td>
+              `
 })
 
 export class PendingLibraryComponent implements OnInit{

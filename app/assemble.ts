@@ -22,6 +22,7 @@ import {UpdateButton} from "./component/pendingPage/updateLibButton.component";
 import {AlertsField} from "./component/pendingPage/alerts.component";
 import {AddAlertsList} from "./component/pendingPage/addalertsList.component";
 import {FileListComponent} from "./component/filelist.component";
+import {FileContentComponent} from "./component/filecontent.component";
 
 export const exampleComponents = [
     // form
@@ -65,5 +66,6 @@ export const rowComponents = [
 
     UpdateButton,
 
-    FileListComponent
+    FileListComponent,
+    FileContentComponent
 ]

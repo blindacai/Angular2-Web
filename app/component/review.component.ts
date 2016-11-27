@@ -34,6 +34,7 @@ import {Subscription} from "rxjs";
                 </div>
                 
                 
+                
               <!--
               <h3>this is a review page for {{id}}</h3>
               <div *ngIf = "lib">
@@ -96,10 +97,6 @@ export class ReviewComponent implements OnInit{
               private filecontentservice: FileContentService) {}
 
 
-  backHome(){
-    this.router.navigate(['/pending']);
-  }
-
 
   readFile($event){
     this.filecontentservice.getFileContent($event).subscribe( content => this.filecontent = content )
@@ -107,6 +104,10 @@ export class ReviewComponent implements OnInit{
 
   getContent(filename: string){
     this.filecontentservice.getFromFileSystem(filename).subscribe( content => {this.filecontent = content;} );
+  }
+
+  backHome(){
+    this.router.navigate(['/pending']);
   }
 
   /*

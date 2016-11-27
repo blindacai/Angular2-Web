@@ -17,8 +17,10 @@ export class FileContentService{
 
     contentTwo: string[] = [];
 
+    private file_name_path: string = 'http://localhost:8080/filename';
+
     private file_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filecontent';
-    private file_name_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filename';
+    //private file_name_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filename';
 
     //private file_path: string = 'http://Bioqcdev01.bcgsc.ca:8080/filecontent';
     //private file_name_path: string = 'http://Bioqcdev01.bcgsc.ca:8080/filename';

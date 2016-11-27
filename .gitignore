@@ -13,6 +13,7 @@ e2e/**/*.js.map
 _test-output
 _temp
 bootstrap.css
+db.json
 
 !karma*.js
 !protractor*.js
