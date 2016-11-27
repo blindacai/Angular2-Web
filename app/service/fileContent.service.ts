@@ -1,10 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
-import {Http, Response, URLSearchParams} from '@angular/http';
-import {LibField} from "../component/pendingPage/lib.component";
-import {Library} from "./model/library";
-import { Headers, RequestOptions } from '@angular/http';
+import {Http, URLSearchParams} from '@angular/http';
 
 @Injectable()
 export class FileContentService{

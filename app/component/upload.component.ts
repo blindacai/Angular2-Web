@@ -5,7 +5,7 @@ import {FileContentService} from "../service/fileContent.service";
     selector: 'upload-file',
     template: `
                 <div class = "container">
-                  <h3>Select File: <button (click) = "togglebutton()">{{showtext}}</button></h3>
+                  <h4>Select File: <button (click) = "togglebutton()">{{showtext}}</button></h4>
                   <input type="file" class = "input-lg" (change)="readFile($event)"> 
                            
                   <br>
