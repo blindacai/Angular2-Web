@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {FileContentService} from "../service/fileContent.service";
-import {Library} from "../service/model/library";
-import {theFile} from "../service/model/file";
-import {FileListService} from "../service/fileList.service";
+import {FileContentService} from "../../service/fileContent.service";
+import {Library} from "../../service/model/library";
+import {theFile} from "../../service/model/file";
+import {FileListService} from "../../service/fileList.service";
 
 @Component({
     selector: 'file-list',

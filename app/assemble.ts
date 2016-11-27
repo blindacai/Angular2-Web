@@ -9,7 +9,7 @@ import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
 import {TabOneComponent} from "./component/tabone.component";
 import {TabTwoComponent} from "./component/tabtwo.component";
 import {TabThreeComponent} from "./component/tabthree.component";
-import {ReviewComponent} from "./component/review.component";
+import {ReviewComponent} from "./component/reviewPage/review.component";
 import {PendingListComponent} from "./component/pendingPage/pendingList.component";
 import {PendingLibraryComponent} from "./component/pendingPage/PendingLibrary.component";
 import {SplitPipe} from "./pipe/split.pipe";
@@ -21,9 +21,9 @@ import {CommentsField} from "./component/pendingPage/comments.component";
 import {UpdateButton} from "./component/pendingPage/updateLibButton.component";
 import {AlertsField} from "./component/pendingPage/alerts.component";
 import {AddAlertsList} from "./component/pendingPage/addalertsList.component";
-import {FileListComponent} from "./component/filelist.component";
-import {FileContentComponent} from "./component/filecontent.component";
-import {UploadFileComponent} from "./component/upload.component";
+import {FileListComponent} from "./component/reviewPage/filelist.component";
+import {FileContentComponent} from "./component/reviewPage/filecontent.component";
+import {UploadFileComponent} from "./component/reviewPage/upload.component";
 
 export const exampleComponents = [
     // form

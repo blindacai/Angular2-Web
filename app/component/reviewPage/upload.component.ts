@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FileContentService} from "../service/fileContent.service";
+import {FileContentService} from "../../service/fileContent.service";
 
 @Component({
     selector: 'upload-file',
