@@ -29,6 +29,10 @@ import {Subscription} from "rxjs";
                 
                 <button (click) = "backHome()">Back</button>
                 
+                <br>
+                
+                <upload-file></upload-file>
+                
                 <div *ngIf = "library">
                     <file-list [library] = "library"></file-list>
                 </div>

@@ -23,6 +23,7 @@ import {AlertsField} from "./component/pendingPage/alerts.component";
 import {AddAlertsList} from "./component/pendingPage/addalertsList.component";
 import {FileListComponent} from "./component/filelist.component";
 import {FileContentComponent} from "./component/filecontent.component";
+import {UploadFileComponent} from "./component/upload.component";
 
 export const exampleComponents = [
     // form
@@ -67,5 +68,6 @@ export const rowComponents = [
     UpdateButton,
 
     FileListComponent,
-    FileContentComponent
+    FileContentComponent,
+    UploadFileComponent
 ]

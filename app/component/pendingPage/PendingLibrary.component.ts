@@ -9,7 +9,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td class="col-md-1" [id-field] = "library"></td>
               <td class="col-md-1" [lib-field] = "library.lib"></td>
               <td class="col-md-1" [sublib-field] = "library.sublib"></td>
-              <td  class="col-md-1" [status-field] = "library"></td>
+              <td class="col-md-1" [status-field] = "library"></td>
               <td class="col-md-3" [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
               <td class="col-md-3" [alerts-field] = "library" [updateLib] = "updateLib"></td>
               
