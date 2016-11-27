@@ -11,6 +11,7 @@ export class FileListService{
                 private formatfileservice: formatFileService){}
 
     private file_name_path: string = 'http://localhost:8080/filename';
+    //private file_name_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filename';
 
     getFileList(library: Library): Observable<theFile[]>{
         let params: URLSearchParams = new URLSearchParams();

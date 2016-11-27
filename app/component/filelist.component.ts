@@ -11,8 +11,11 @@ import {FileListService} from "../service/fileList.service";
                     <div class="container">
                       <h3>All files in directory</h3>
                       <div class="list-group" *ngFor = "let file of fileList">
-                        <div class="list-group-item">{{file.name}}
-                        <!--<file-content [tableid] = "test"></file-content>-->
+                        <div class="list-group-item" (click) = "file.show = !file.show">
+                            {{file.name}}
+                            <div *ngIf = "file.show">
+                                <file-content [file] = "file"></file-content>
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -26,8 +29,6 @@ export class FileListComponent implements OnInit{
     library: Library;
 
     fileList: theFile[];
-
-    test: string = "sometest";
 
     ngOnInit(){
         this.filelistservice.getFileList(this.library).subscribe(data => this.fileList = data);

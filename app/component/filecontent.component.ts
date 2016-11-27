@@ -1,17 +1,25 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {theFile} from "../service/model/file";
+import {FileContentService} from "../service/fileContent.service";
 
 @Component({
     selector: 'file-content',
     template: `
-                <div class="collapse" id= "{$tableid}">
-                    <div class="card card-block">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <div *ngIf = "file.content" class="card card-block">
+                    <div *ngFor = "let content of file.content">
+                        {{content}}
                     </div>
                 </div>
               `
 })
 
-export class FileContentComponent{
+export class FileContentComponent implements OnInit{
     @Input()
-    tableid: string;
+    file: theFile;
+
+    constructor(private filecontentservice: FileContentService){}
+
+    ngOnInit(){
+        this.filecontentservice.getFromFileSystem(this.file.name).subscribe(content => this.file.content = content);
+    }
 }

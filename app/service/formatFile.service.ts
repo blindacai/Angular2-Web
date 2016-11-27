@@ -16,7 +16,7 @@ export class formatFileService{
     formatFile(singlefile: string): theFile{
         let file: theFile = {
                             name : singlefile,
-                            content: "testing content",
+                            content: null,
                             show: false
                             };
         return file;
