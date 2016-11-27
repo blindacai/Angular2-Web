@@ -17,8 +17,8 @@ import {AlertService} from "../../service/alert.service";
                     <table class = "table table-bordered">
                         <thead>
                             <tr>
-                                <th class = "testc">id</th> <th class = "testc">lib</th> <th class = "testc">sublib</th> <th class = "testc">status</th> <th class = "testc">comments</th> <th class = "testc">alerts</th>
-                                <th class = "testc"></th>
+                                <th>id</th> <th>lib</th> <th>sublib</th> <th>status</th> <th>comments</th> <th>alerts</th>
+                                <th></th>
                             </tr>
                         </thead>
                         

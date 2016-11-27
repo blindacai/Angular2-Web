@@ -21,6 +21,8 @@ import {exampleComponents, pendingComponents, rowComponents} from "./assemble";
 import { routing } from './app.route'
 import {FileContentService} from "./service/fileContent.service";
 import {AlertService} from "./service/alert.service";
+import {formatFileService} from "./service/formatFile.service";
+import {FileListService} from "./service/fileList.service";
 
 
 // Looks like adding Angular2-in-memory-web-api in 'imports' will override other mock servers
@@ -44,10 +46,15 @@ import {AlertService} from "./service/alert.service";
 
   providers: [LibraryService,
               formatLibService,
-              HistoryService,
               LibraryLocal,
-              FileContentService,
-              AlertService],
+
+              HistoryService,
+
+              AlertService,
+
+              FileListService,
+              formatFileService,
+              FileContentService],
 
   bootstrap: [ ProjectTitleComponent ]
 })
