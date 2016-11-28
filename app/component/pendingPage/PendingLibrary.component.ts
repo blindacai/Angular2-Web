@@ -14,9 +14,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td [alerts-field] = "library" [updateLib] = "updateLib"></td>
               
               <td align = "center" [update-button] = "library" [newfieldvalue] = "updateLib" (updatedLibs) = "updatedLibs($event)"></td>
-
-              <router-outlet></router-outlet>
-              `,
+              `
 })
 
 export class PendingLibraryComponent implements OnInit{

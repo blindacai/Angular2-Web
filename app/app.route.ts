@@ -4,7 +4,7 @@ import { TabOneComponent } from './component/tabone.component'
 import { PendingListComponent } from "./component/pendingPage/pendingList.component";
 import {TabTwoComponent} from "./component/tabtwo.component";
 import {TabThreeComponent} from "./component/tabthree.component";
-import {ReviewComponent} from "./component/review.component";
+import {ReviewComponent} from "./component/reviewPage/review.component";
 import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
 
 const routes: Routes = [

@@ -11,6 +11,7 @@ import {Alert} from "./model/alert";
 
 @Injectable()
 export class LibraryService {
+
   //private dataurl_database = 'http://localhost:8080/pending_db';
   //private dataurl_local = 'http://localhost:8080/pending_local';
   //private dataurl_lib = 'http://localhost:8080/library';
@@ -87,6 +88,9 @@ export class LibraryService {
       return true;
     }
     else {
+        lib.status = "Pending";
+        newField.addcomments = null;
+        newField.addalerts = [];
       return false;
     }
   }
