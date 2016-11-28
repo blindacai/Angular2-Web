@@ -24,6 +24,7 @@ import {AddAlertsList} from "./component/pendingPage/addalertsList.component";
 import {FileListComponent} from "./component/reviewPage/filelist.component";
 import {FileContentComponent} from "./component/reviewPage/filecontent.component";
 import {UploadFileComponent} from "./component/reviewPage/upload.component";
+import {HighlightDirective} from "./directive/highlight.directive";
 
 export const exampleComponents = [
     // form
@@ -69,5 +70,7 @@ export const rowComponents = [
 
     FileListComponent,
     FileContentComponent,
-    UploadFileComponent
+    UploadFileComponent,
+
+    HighlightDirective
 ]
