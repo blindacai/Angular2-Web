@@ -18,8 +18,18 @@ export class formatFileService{
                             name : singlefile,
                             content: null,
                             show: false,
-                            extension: false
+                            extension: this.checkExtension(singlefile)
                             };
         return file;
+    }
+
+    private checkExtension(filename: string): boolean{
+        let parsed: string[] = filename.split(".");
+        let len = parsed.length;
+
+        if(parsed[len - 1] == "gz")
+            return false;
+        else
+            return true;
     }
 }
