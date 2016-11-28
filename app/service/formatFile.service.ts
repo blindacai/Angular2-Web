@@ -17,7 +17,8 @@ export class formatFileService{
         let file: theFile = {
                             name : singlefile,
                             content: null,
-                            show: false
+                            show: false,
+                            extension: false
                             };
         return file;
     }

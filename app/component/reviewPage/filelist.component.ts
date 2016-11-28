@@ -13,7 +13,9 @@ import {FileListService} from "../../service/fileList.service";
                       <div class="list-group" *ngFor = "let file of fileList">
                         <div class="list-group-item" (click) = "file.show = !file.show">
                             {{file.name}}
-                            <div *ngIf = "file.show">
+                            <span class="badge" *ngIf = "!file.extension">Not Supported</span>
+                            
+                            <div *ngIf = "file.show && file.extension">
                                 <file-content [file] = "file"></file-content>
                             </div>
                         </div>
