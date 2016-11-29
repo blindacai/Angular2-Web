@@ -23,6 +23,7 @@ export class SearchDBComponent{
     constructor(private libservice: LibraryService){}
 
     searchdb(libinfo: string){
+        this.library = null;
         this.libservice.getLibById(parseInt(libinfo)).subscribe(lib => this.library = lib);
     }
 }
