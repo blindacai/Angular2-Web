@@ -16,6 +16,7 @@ import {SplitPipe} from "./pipe/split.pipe";
 import {IdField} from "./component/pendingPage/Id.component";
 import {LibField} from "./component/pendingPage/lib.component";
 import {SublibField} from "./component/pendingPage/sublib.component";
+import {LimsprotocolField} from "./component/pendingPage/limsprotocol.component";
 import {StatusField} from "./component/pendingPage/status.component";
 import {CommentsField} from "./component/pendingPage/comments.component";
 import {UpdateButton} from "./component/pendingPage/updateLibButton.component";
@@ -61,6 +62,7 @@ export const rowComponents = [
     IdField,
     LibField,
     SublibField,
+    LimsprotocolField,
     StatusField,
     CommentsField,
     AlertsField,

@@ -9,6 +9,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
               <td [id-field] = "library" [newstatus] = "color"></td>
               <td [lib-field] = "library.lib"></td>
               <td [sublib-field] = "library.sublib"></td>
+              <td [limsprotocol-field] = "library.limsprotocol"></td>
               <td [status-field] = "library" (newStatus) = "updatedStatus($event)"></td>
               <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
               <td [alerts-field] = "library" [updateLib] = "updateLib"></td>

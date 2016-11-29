@@ -10,7 +10,7 @@ import {Library} from "../../service/model/library";
                     <table class = "table table-bordered">
                         <thead>
                             <tr>
-                                <th>id</th> <th>lib</th ><th>sublib</th> <th>status</th> <th>comments</th> <th>alerts</th>
+                                <th>id</th> <th>lib</th ><th>sublib</th> <th>lims protocol</th> <th>status</th> <th>comments</th> <th>alerts</th>
                                 <th></th>
                             </tr>
                         </thead>

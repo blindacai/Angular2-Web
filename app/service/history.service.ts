@@ -8,7 +8,7 @@ export class HistoryService{
     historySource$ = this.historySource.asObservable();
 
     storage: Storage = localStorage;
-    reviewedLibs: Library[] = JSON.parse(this.storage.getItem("history"));
+    reviewedLibs: Library[] = JSON.parse(this.storage.getItem("history")) || [];
 
     addReviewedLibrary(lib: Library){
         this.reviewedLibs.push(lib);

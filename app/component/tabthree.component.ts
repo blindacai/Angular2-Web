@@ -17,7 +17,7 @@ import {Subscription} from "rxjs";
 })
 
 export class TabThreeComponent implements OnInit, OnDestroy{
-    title: string = "This is TabThree";
+    title: string = "This is History";
 
     test: string;
 
