@@ -4,7 +4,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
 @Component({
     selector: '[comments-field]',
     template: `
-                <td>{{commentsfield}} {{updateLib.addcomments}}
+                <td>{{commentsfield}} <span style = "color: blue">{{updateLib.addcomments}}</span>
                      <br>
                      <textarea type = "text" id = "comments" style = "width: 200px; height: 70px"
                             [(ngModel)]="updateLib.addcomments" name = "comments">

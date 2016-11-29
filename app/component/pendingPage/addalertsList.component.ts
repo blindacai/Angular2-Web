@@ -7,7 +7,7 @@ import {updateLibrary} from "../../service/model/updateLibrary";
     selector: 'addalerts-list',
     template: `
                 <div *ngFor = "let r of updateLib.addalerts" (click) = "onSelect(r)">
-                    {{r.alerts_id}}: {{r.reference}}
+                    <span style = "color: blue">{{r.alerts_id}}: {{r.reference}}</span>
                 </div>
               `
 })
