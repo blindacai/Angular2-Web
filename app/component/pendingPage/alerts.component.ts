@@ -17,7 +17,10 @@ import {Library} from "../../service/model/library";
                         </option>
                     </select>
                 </td>
-              `
+              `,
+    styles: [`select {
+                    width:500px;
+               }`]
 })
 
 export class AlertsField implements OnInit, OnDestroy{
