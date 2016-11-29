@@ -7,7 +7,7 @@ import {Library} from "../../service/model/library";
     selector: '[id-field]',
     template: `
                 <td align = "center"><span (click) = "onSelect(library.id)">
-                                            <p [theHighlight] = "newstatus">{{library.id}}</p>
+                                            <p [theHighlight] = "library.status">{{library.id}}</p>
                                      </span>
                 </td>
               `
@@ -17,9 +17,6 @@ export class IdField{
 
     @Input('id-field')
     library: Library;
-
-    @Input()
-    newstatus: string;
 
     constructor( private router: Router) { }
 
