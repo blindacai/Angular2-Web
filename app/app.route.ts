@@ -6,6 +6,7 @@ import {TabTwoComponent} from "./component/tabtwo.component";
 import {TabThreeComponent} from "./component/tabthree.component";
 import {ReviewComponent} from "./component/reviewPage/review.component";
 import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
+import {SearchDBComponent} from "./component/searchdb.component";
 
 const routes: Routes = [
     {
@@ -18,8 +19,8 @@ const routes: Routes = [
         component: PendingListComponent
     },
     {
-        path: 'tabone',
-        component: TabOneComponent
+        path: 'search-db',
+        component: SearchDBComponent
     },
     {
         path: 'tabtwo',

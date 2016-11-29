@@ -26,6 +26,8 @@ import {FileListComponent} from "./component/reviewPage/filelist.component";
 import {FileContentComponent} from "./component/reviewPage/filecontent.component";
 import {UploadFileComponent} from "./component/reviewPage/upload.component";
 import {HighlightDirective} from "./directive/highlight.directive";
+import {SearchDBComponent} from "./component/searchdb.component";
+import {SearchResultsComponent} from "./component/searchresults.component";
 
 export const exampleComponents = [
     // form
@@ -74,5 +76,8 @@ export const rowComponents = [
     FileContentComponent,
     UploadFileComponent,
 
-    HighlightDirective
+    HighlightDirective,
+
+    SearchDBComponent,
+    SearchResultsComponent
 ]

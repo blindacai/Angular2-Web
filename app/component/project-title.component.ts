@@ -8,7 +8,7 @@ import '../rxjs-operators';
                 <h3>Manual Review</h3>
                 <nav>
                     <a [routerLink] ="['/pending']" routerLinkActive="active">Pending</a>
-                    <a [routerLink] ="['/tabone']" routerLinkActive="active">TabOne</a>
+                    <a [routerLink] ="['/search-db']" routerLinkActive="active">Search</a>
                     <!--<a [routerLink] ="['/tabtwo']" routerLinkActive="active">TabTwo</a>-->
                     <a [routerLink] ="['/tabthree']" routerLinkActive="active">TabThree</a>
                     <a [routerLink] ="['/tabfour']" routerLinkActive="active">TabFour</a>
