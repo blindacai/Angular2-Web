@@ -11,7 +11,7 @@ import {formatAlertService} from "../../service/formatAlerts.service";
     template: `
                 <td>
                     <div *ngIf = "displayAlerts">
-                        <div *ngFor = "let r of displayAlerts">{{r.alerts_id}}:{{r.reference}}></div>
+                        <div *ngFor = "let r of displayAlerts">{{r.alerts_id}}:{{r.reference}}</div>
                     </div>
                     <br>
                     <addalerts-list [updateLib] = "updateLib"></addalerts-list>
@@ -46,20 +46,13 @@ export class AlertsField implements OnInit, OnDestroy{
 
     ngOnInit(){
         this.getAlerts();
-        //this.formatdbAlerts(this.library.alerts);
-        this.formatalerts.lookupAlerts(this.library.alerts).subscribe(formatted => {this.displayAlerts = formatted});
     }
 
     getAlerts(){
         this.subscription = this.alertService.getAlert()
             .subscribe(allalerts => {this.alerts = allalerts;
-                       this.alerts.push({alerts_id: '-1', reference: "not choosing"});});
-    }
-
-    formatdbAlerts(alerts: string){
-        this.subscription = this.formatalerts.lookupAlerts(alerts).subscribe(formatted => {this.displayAlerts = formatted});
-        this.formatalerts.lookupAlerts(alerts);
-        //console.log(this.displayAlerts);
+                                     this.alerts.push({alerts_id: '-1', reference: "not choosing"});
+                                     this.displayAlerts = this.formatalerts.lookupAlerts(this.library.alerts, allalerts);});
     }
 
     onChange(selected: string){
