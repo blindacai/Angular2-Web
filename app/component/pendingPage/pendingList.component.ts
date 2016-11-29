@@ -23,7 +23,8 @@ import {AlertService} from "../../service/alert.service";
                         </thead>
                         
                         <tbody>
-                            <tr *ngFor = "let lib of libraries" [pending-lib] = "lib" (updatedLibraries) = "updatedLibs($event)"></tr>
+                            <tr *ngFor = "let lib of libraries" [pending-lib] = "lib" 
+                                                                (updatedLibraries) = "updatedLibs($event)"></tr>
                         </tbody>
                     </table>
                 </div>

@@ -6,10 +6,10 @@ import {updateLibrary} from "../../service/model/updateLibrary";
 @Component({
   selector: '[pending-lib]',
   template: `
-              <td [id-field] = "library"></td>
+              <td [id-field] = "library" [newstatus] = "color"></td>
               <td [lib-field] = "library.lib"></td>
               <td [sublib-field] = "library.sublib"></td>
-              <td [status-field] = "library"></td>
+              <td [status-field] = "library" (newStatus) = "updatedStatus($event)"></td>
               <td [comments-field] = "library.comments" [updateLib] = "updateLib"></td>
               <td [alerts-field] = "library" [updateLib] = "updateLib"></td>
               
@@ -27,6 +27,8 @@ export class PendingLibraryComponent implements OnInit{
     addalerts: []
   };
 
+  private color: string;
+
   @Output()
   updatedLibraries = new EventEmitter<Library[]>();
 
@@ -37,5 +39,14 @@ export class PendingLibraryComponent implements OnInit{
 
   updatedLibs(libs: Library[]) {
     this.updatedLibraries.emit(libs);
+  }
+
+  updatedStatus(status: string){
+    if(status == 'Passed')
+      this.color = 'lightgreen';
+    else if(status == 'Failed')
+      this.color = 'lightsalmon';
+    else if(status == 'Pending')
+      this.color = 'white'
   }
 }
