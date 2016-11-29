@@ -23,6 +23,7 @@ import {FileContentService} from "./service/fileContent.service";
 import {AlertService} from "./service/alert.service";
 import {formatFileService} from "./service/formatFile.service";
 import {FileListService} from "./service/fileList.service";
+import {formatAlertService} from "./service/formatAlerts.service";
 
 
 // Looks like adding Angular2-in-memory-web-api in 'imports' will override other mock servers
@@ -54,7 +55,8 @@ import {FileListService} from "./service/fileList.service";
 
               FileListService,
               formatFileService,
-              FileContentService],
+              FileContentService,
+              formatAlertService],
 
   bootstrap: [ ProjectTitleComponent ]
 })

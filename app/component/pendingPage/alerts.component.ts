@@ -4,11 +4,17 @@ import {Subscription} from "rxjs";
 import {Alert} from "../../service/model/alert";
 import {updateLibrary} from "../../service/model/updateLibrary";
 import {Library} from "../../service/model/library";
+import {formatAlertService} from "../../service/formatAlerts.service";
 
 @Component({
     selector: '[alerts-field]',
     template: `
-                <td>{{library.alerts}} <addalerts-list [updateLib] = "updateLib"></addalerts-list>
+                <td>
+                    <div *ngIf = "displayAlerts">
+                        <div *ngFor = "let r of displayAlerts">{{r.alerts_id}}:{{r.reference}}></div>
+                    </div>
+                    <br>
+                    <addalerts-list [updateLib] = "updateLib"></addalerts-list>
                     <br>
                     <select id = "alerts" #local_alerts name = "alerts"
                         (change) = "onChange(local_alerts.value)">
@@ -26,24 +32,34 @@ import {Library} from "../../service/model/library";
 export class AlertsField implements OnInit, OnDestroy{
     subscription: Subscription;
 
-    @ Input('alerts-field')
+    @Input('alerts-field')
     library: Library;
 
     @Input()
     updateLib: updateLibrary;
 
     alerts: Alert[] = [];
+    displayAlerts: Alert[] = [];
+
+    constructor(private alertService: AlertService,
+                private formatalerts: formatAlertService){}
 
     ngOnInit(){
         this.getAlerts();
+        //this.formatdbAlerts(this.library.alerts);
+        this.formatalerts.lookupAlerts(this.library.alerts).subscribe(formatted => {this.displayAlerts = formatted});
     }
-
-    constructor(private alertService: AlertService){}
 
     getAlerts(){
         this.subscription = this.alertService.getAlert()
             .subscribe(allalerts => {this.alerts = allalerts;
                        this.alerts.push({alerts_id: '-1', reference: "not choosing"});});
+    }
+
+    formatdbAlerts(alerts: string){
+        this.subscription = this.formatalerts.lookupAlerts(alerts).subscribe(formatted => {this.displayAlerts = formatted});
+        this.formatalerts.lookupAlerts(alerts);
+        //console.log(this.displayAlerts);
     }
 
     onChange(selected: string){
