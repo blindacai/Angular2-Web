@@ -1,0 +1,7 @@
+
+2016-11-29 - DC
+[CHANGED] modified getReviewed to trim history list in app/service/history.service.ts
+Committed revision 125486.
+
+
+//EOF
