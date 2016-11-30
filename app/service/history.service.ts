@@ -16,7 +16,7 @@ export class HistoryService{
     }
 
     getReviewed(){
-        this.historySource.next(this.reviewedLibs);
+        this.historySource.next(this.reviewedLibs.slice(-3,));
         return this.historySource$;
     }
 }
