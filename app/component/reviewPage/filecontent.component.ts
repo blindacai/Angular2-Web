@@ -7,10 +7,13 @@ import {FileContentService} from "../../service/fileContent.service";
     template: `
                 <div *ngIf = "file.content" class="card card-block">
                     <div *ngFor = "let content of file.content">
-                        {{content}}
+                        <p>{{content}}</p>
                     </div>
                 </div>
-              `
+              `,
+    styles: [`p {
+                   font-family: monospace;
+               }`]
 })
 
 export class FileContentComponent implements OnInit{

@@ -4,7 +4,8 @@ import {Library} from "../../service/model/library";
 @Component({
     selector: '[status-field]',
     template: `
-                <td>{{library.status}}
+                <td>
+                <p [theHighlight] = "library.status">{{library.status}}</p>
                     <br>
                     <select id = "status" #local_status
                         [(ngModel)]="library.status" name = "status">
