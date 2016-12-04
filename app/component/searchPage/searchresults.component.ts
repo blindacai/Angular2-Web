@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import {Library} from "../service/model/library";
+import {Library} from "../../service/model/library";
 
 @Component({
     selector: 'search-results',
     template: `
-                <div *ngIf = "library">
+                <div *ngIf = "libraries">
                     <table class = "table table-bordered">
                         <thead>
                             <tr>
@@ -14,7 +14,7 @@ import {Library} from "../service/model/library";
                         </thead>
                         
                         <tbody>
-                            <tr [pending-lib] = "library"></tr>
+                            <tr *ngFor = "let lib of libraries" [return-lib] = "lib"></tr>
                         </tbody>
                     </table>
                 </div>
@@ -23,5 +23,5 @@ import {Library} from "../service/model/library";
 
 export class SearchResultsComponent{
     @Input()
-    library: Library;
+    libraries: Library[];
 }

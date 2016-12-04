@@ -8,7 +8,6 @@ import {AlertService} from "../../service/alert.service";
 @Component({
     selector: 'pending-list',
     template: `
-                {{title}}
                 <br>
                 <button (click) = "getLibraryFromDatabase()">Get The Latest Pending List</button>
                 <br>
@@ -37,12 +36,8 @@ import {AlertService} from "../../service/alert.service";
 })
 
 export class PendingListComponent implements OnInit, OnDestroy {
-    title: string = "This is Pending page";
-
     libraries: Library[] = [];
     reviewed: Library[] = [];
-
-    status = ['Pending', 'Passed', 'Failed'];
 
     subscription: Subscription;
 
@@ -68,11 +63,6 @@ export class PendingListComponent implements OnInit, OnDestroy {
         this.libraries = libs;
     }
 
-    /*
-    reviewedLib(lib: Library) {
-        this.reviewed.push(lib);
-    }
-    */
 
     ngOnDestroy(){
         if(this.subscription){

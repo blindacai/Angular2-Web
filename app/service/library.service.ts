@@ -19,6 +19,7 @@ export class LibraryService {
   private dataurl_database = 'http://lcai01.phage.bcgsc.ca:8080/pending_db';
   private dataurl_local = 'http://lcai01.phage.bcgsc.ca:8080/pending_local';
   private dataurl_lib = 'http://lcai01.phage.bcgsc.ca:8080/library';
+  private dataurl_sublib = 'http://lcai01.phage.bcgsc.ca:8080/sublib';
 
   //private dataurl_database = 'http://Bioqcdev01.bcgsc.ca:8080/pending_db';
   //private dataurl_local = 'http://Bioqcdev01.bcgsc.ca:8080/pending_local';
@@ -51,6 +52,13 @@ export class LibraryService {
                .catch(this.handleError);
   }
 
+  getLibBySublib(sublib: string): Observable<Library[]>{
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('libsublib', sublib);
+    return this.http.get(this.dataurl_sublib, {search: params})
+        .map(data => this.formatlibservice.formatLibs(data.json()))
+        .catch(this.handleError);
+  }
 
   updateLibrary(lib: Library, newFiled: updateLibrary): Observable<Library[]> {
     if(!this.doUpdate(lib, newFiled)){

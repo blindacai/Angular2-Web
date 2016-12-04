@@ -11,7 +11,7 @@ import {Library} from "../../service/model/library";
                                      </span>
                 
                 <br>
-                <button (click) = "gotoDetails()">Library Details</button>
+                <button (click) = "gotoDetails()">Details</button>
                 </td>
               `
 })

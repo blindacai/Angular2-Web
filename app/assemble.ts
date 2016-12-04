@@ -26,8 +26,10 @@ import {FileListComponent} from "./component/reviewPage/filelist.component";
 import {FileContentComponent} from "./component/reviewPage/filecontent.component";
 import {UploadFileComponent} from "./component/reviewPage/upload.component";
 import {HighlightDirective} from "./directive/highlight.directive";
-import {SearchDBComponent} from "./component/searchdb.component";
-import {SearchResultsComponent} from "./component/searchresults.component";
+import {SearchDBComponent} from "./component/searchPage/searchdb.component";
+import {SearchResultsComponent} from "./component/searchPage/searchresults.component";
+import {ReturnedLibComponent} from "./component/searchPage/returnedLib.component";
+import {EditLibComponent} from "./component/searchPage/editLib.component";
 
 export const exampleComponents = [
     // form
@@ -79,5 +81,7 @@ export const rowComponents = [
     HighlightDirective,
 
     SearchDBComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    ReturnedLibComponent,
+    EditLibComponent
 ]

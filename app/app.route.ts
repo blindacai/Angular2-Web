@@ -6,7 +6,8 @@ import {TabTwoComponent} from "./component/tabtwo.component";
 import {TabThreeComponent} from "./component/tabthree.component";
 import {ReviewComponent} from "./component/reviewPage/review.component";
 import {TabFourComponent} from "./other/stackoverflowQ/tabfour.component";
-import {SearchDBComponent} from "./component/searchdb.component";
+import {SearchDBComponent} from "./component/searchPage/searchdb.component";
+import {EditLibComponent} from "./component/searchPage/editLib.component";
 
 const routes: Routes = [
     {
@@ -34,10 +35,14 @@ const routes: Routes = [
         path: 'tabfour',
         component: TabFourComponent
     },
-  {
-    path: 'review/:id',
-    component: ReviewComponent
-  }
+    {
+        path: 'review/:id',
+        component: ReviewComponent
+    },
+    {
+        path: 'edit/:id',
+        component: EditLibComponent
+    }
 ]
 
 export const routing = RouterModule.forRoot(routes);
