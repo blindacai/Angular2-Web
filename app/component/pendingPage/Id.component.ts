@@ -9,6 +9,9 @@ import {Library} from "../../service/model/library";
                 <td align = "center"><span (click) = "onSelect(library.id)">
                                             <p [theHighlight] = "library.status">{{library.id}}</p>
                                      </span>
+                
+                <br>
+                <button (click) = "gotoDetails()">Library Details</button>
                 </td>
               `
 })
@@ -23,5 +26,9 @@ export class IdField{
   onSelect(idfield: number){
     this.router.navigate(['/review', idfield]);
   }
+
+    gotoDetails(){
+        window.location.href='http://bioqcweb02.bcgsc.ca/web/?queriedLib=' + this.library.id + '&pipeline=bbt';
+    }
 
 }
