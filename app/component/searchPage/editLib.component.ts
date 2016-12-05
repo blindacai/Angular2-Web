@@ -11,8 +11,9 @@ import {Library} from "../../service/model/library";
                  {{library.sublib}}
                  
                  <div [hidden] = "editing">
-                    {{library.status}}
-                    {{library.comments}}
+                    Status: {{library.status}}
+                    <br>
+                    Comments: {{library.comments}}
                  </div>
                  
                  <button
@@ -26,6 +27,9 @@ import {Library} from "../../service/model/library";
                              (saved)= "onSaved($event)"
                              (canceled) = "onCanceled()">
                  </lib-editor>
+                 
+                 <br>
+                 <button (click) = updateLib()>update</button>
                 </div>
               `
 })
@@ -52,6 +56,10 @@ export class EditLibComponent implements OnInit{
 
     onCanceled(){
         this.editing = false;
+    }
+
+    updateLib(){
+        // add a method in library.service
     }
 
 }

@@ -7,6 +7,7 @@ import {RestoreService} from "../../service/restore.service";
     template: `
                 <div *ngIf = "library">
                     Status: <input [(ngModel)]="library.status"/>
+                    <br>
                     Comments: <input [(ngModel)]="library.comments"/>
                 
                     <br>

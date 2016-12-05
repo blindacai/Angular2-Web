@@ -10,6 +10,12 @@ import {AlertService} from "../../service/alert.service";
     template: `
                 <br>
                 <button (click) = "getLibraryFromDatabase()">Get The Latest Pending List</button>
+                
+                <br>
+                <div *ngIf = "errorMsg">
+                    {{errorMsg}}
+                </div>
+                
                 <br>
                 <br>
                 <div *ngIf = "libraries">
@@ -38,6 +44,7 @@ import {AlertService} from "../../service/alert.service";
 export class PendingListComponent implements OnInit, OnDestroy {
     libraries: Library[] = [];
     reviewed: Library[] = [];
+    errorMsg: string;
 
     subscription: Subscription;
 
@@ -50,7 +57,8 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
     getLibraryFromDatabase() {
         this.subscription = this.libraryService.getLibraryFromDatabase()
-            .subscribe(libs => this.libraries = libs);
+            .subscribe(libs => this.libraries = libs,
+                       error => this.errorMsg = error);
     }
 
 
