@@ -69,10 +69,9 @@ export class UpdateButton{
     }
 
     test(){
-        console.log(this.savekeyService.getkey());
-        this.libraryService.testUpdate(this.libtoupdate.id, this.savekeyService.getkey())
-            .subscribe(data => {console.log(data.message + " " + data.key);
-                                this.savekeyService.save(data.key)});
+        //console.log(this.savekeyService.getkey());
+        this.libraryService.testUpdate(this.libtoupdate.id, "linda")
+            .subscribe(data => {console.log(data.message)});
     }
 
 }

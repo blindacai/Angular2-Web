@@ -33,8 +33,11 @@ export class LibraryService {
               private librarylocal: LibraryLocal){ }
 
 
-  getLibraryFromDatabase(): Observable<Library[]> {
-    return this.http.get(this.dataurl_database)
+  getLibraryFromDatabase(hostname: string): Observable<Library[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('hostname', hostname);
+
+    return this.http.get(this.dataurl_database, {search: params})
                .map(data => this.formatlibservice.formatLibs(data.json()))
                .do(data => this.librarylocal.assign(data))
                .catch(this.handleError);
@@ -81,10 +84,10 @@ export class LibraryService {
     }
   }
 
-  testUpdate(id: number, key: number){
+  testUpdate(id: number, hostname: string){
     let body = JSON.stringify({
       'id': id,
-      'key': key
+      'hostname': hostname
     });
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
