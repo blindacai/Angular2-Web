@@ -81,9 +81,10 @@ export class LibraryService {
     }
   }
 
-  testUpdate(id: number){
+  testUpdate(id: number, key: number){
     let body = JSON.stringify({
-      'id': id
+      'id': id,
+      'key': key
     });
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});

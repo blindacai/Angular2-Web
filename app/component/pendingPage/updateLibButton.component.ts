@@ -40,6 +40,8 @@ export class UpdateButton{
 
     errorMsg: string;
 
+    private key: number = 0;
+
     constructor(private libraryService: LibraryService,
                 private historyService: HistoryService){
 
@@ -64,7 +66,7 @@ export class UpdateButton{
     }
 
     test(){
-        this.libraryService.testUpdate(this.libtoupdate.id).subscribe(data => {console.log(data.message);});
+        this.libraryService.testUpdate(this.libtoupdate.id, this.key).subscribe(data => {console.log(data.message + " " + data.key); this.key = data.key});
     }
 
 }
