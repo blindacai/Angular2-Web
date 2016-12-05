@@ -21,6 +21,8 @@ export class LibraryService {
   private dataurl_lib = 'http://lcai01.phage.bcgsc.ca:8080/library';
   private dataurl_sublib = 'http://lcai01.phage.bcgsc.ca:8080/sublib';
 
+  private test_url = 'http://lcai01.phage.bcgsc.ca:8080/checklib';
+
   //private dataurl_database = 'http://Bioqcdev01.bcgsc.ca:8080/pending_db';
   //private dataurl_local = 'http://Bioqcdev01.bcgsc.ca:8080/pending_local';
   //private dataurl_lib = 'http://Bioqcdev01.bcgsc.ca:8080/library';
@@ -77,6 +79,15 @@ export class LibraryService {
           .map(data => this.formatlibservice.formatLibs(data.json()))
           .catch(this.handleError);
     }
+  }
+
+  testUpdate(id: number){
+    let body = JSON.stringify({
+      'id': id
+    });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(this.test_url, body, options).map(res => res.json());
   }
 
   private doUpdate(lib: Library, newField: updateLibrary): boolean{

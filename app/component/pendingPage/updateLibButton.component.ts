@@ -13,6 +13,10 @@ import {HistoryService} from "../../service/history.service";
                               (click) = "updateLib(libtoupdate, newfieldvalue)">
                         update
                       </button>
+                      
+                      <button (click) = "test()">
+                        Test
+                      </button>
                   
                       <div *ngIf = "errorMsg">
                         {{errorMsg}}
@@ -57,6 +61,10 @@ export class UpdateButton{
 
     private findLib(data: Library){
         return data.id == this.libtoupdate.id;
+    }
+
+    test(){
+        this.libraryService.testUpdate(this.libtoupdate.id).subscribe(data => {console.log(data.message);});
     }
 
 }
