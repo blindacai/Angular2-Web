@@ -3,6 +3,7 @@ import {Library} from "../../service/model/library";
 import {updateLibrary} from "../../service/model/updateLibrary";
 import {LibraryService} from "../../service/library.service";
 import {HistoryService} from "../../service/history.service";
+import {SaveKeyService} from "../../service/savekey.service";
 
 @Component({
     selector: '[update-button]',
@@ -22,7 +23,8 @@ import {HistoryService} from "../../service/history.service";
                         {{errorMsg}}
                       </div>
                   </td>
-              `
+              `,
+    providers: [SaveKeyService]
 })
 
 export class UpdateButton{
@@ -43,7 +45,8 @@ export class UpdateButton{
     private key: number = 0;
 
     constructor(private libraryService: LibraryService,
-                private historyService: HistoryService){
+                private historyService: HistoryService,
+                private savekeyService: SaveKeyService){
 
     }
 
@@ -66,7 +69,10 @@ export class UpdateButton{
     }
 
     test(){
-        this.libraryService.testUpdate(this.libtoupdate.id, this.key).subscribe(data => {console.log(data.message + " " + data.key); this.key = data.key});
+        console.log(this.savekeyService.getkey());
+        this.libraryService.testUpdate(this.libtoupdate.id, this.savekeyService.getkey())
+            .subscribe(data => {console.log(data.message + " " + data.key);
+                                this.savekeyService.save(data.key)});
     }
 
 }
