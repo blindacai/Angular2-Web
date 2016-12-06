@@ -32,6 +32,7 @@ import {ReturnedLibComponent} from "./component/searchPage/returnedLib.component
 import {EditLibComponent} from "./component/searchPage/editLib.component";
 import {LibEditorComponent} from "./component/searchPage/libeditor.component";
 import {DetectCommentsComponent} from "./component/pendingPage/detectcomments.component";
+import {ChangeColor} from "./directive/changecolor.directive";
 
 export const exampleComponents = [
     // form
@@ -88,5 +89,6 @@ export const rowComponents = [
     EditLibComponent,
     LibEditorComponent,
 
-    DetectCommentsComponent
+    DetectCommentsComponent,
+    ChangeColor
 ]

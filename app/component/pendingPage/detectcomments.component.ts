@@ -4,8 +4,9 @@ import {LibraryService} from "../../service/library.service";
 @Component({
     selector: 'detect-comments',
     template: `
-                {{msg}}
+                <span [change-color] = "msg">{{msg}}</span>
               `
+    //styles: [`span{ color: red; }`]
 })
 
 export class DetectCommentsComponent implements DoCheck{
