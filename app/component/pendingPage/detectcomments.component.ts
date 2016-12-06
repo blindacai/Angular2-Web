@@ -6,7 +6,6 @@ import {LibraryService} from "../../service/library.service";
     template: `
                 <span [change-color] = "msg">{{msg}}</span>
               `
-    //styles: [`span{ color: red; }`]
 })
 
 export class DetectCommentsComponent implements DoCheck{
@@ -30,9 +29,13 @@ export class DetectCommentsComponent implements DoCheck{
     }
 
     firechanges(){
-    this.libraryService.testUpdate(this.id, "linda")
+        this.libraryService.testUpdate(this.id, "linda")
                        .subscribe(data => {console.log(data.message); this.msg = data.message});
+
+        setTimeout(() => {
+            this.msg = "restore";
+        }, 1500);
+
+        //setTimeout(this.restore.bind(this), 1500);     also works
     }
-
-
 }
