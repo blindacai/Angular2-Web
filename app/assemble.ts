@@ -31,6 +31,7 @@ import {SearchResultsComponent} from "./component/searchPage/searchresults.compo
 import {ReturnedLibComponent} from "./component/searchPage/returnedLib.component";
 import {EditLibComponent} from "./component/searchPage/editLib.component";
 import {LibEditorComponent} from "./component/searchPage/libeditor.component";
+import {DetectCommentsComponent} from "./component/pendingPage/detectcomments.component";
 
 export const exampleComponents = [
     // form
@@ -85,5 +86,7 @@ export const rowComponents = [
     SearchResultsComponent,
     ReturnedLibComponent,
     EditLibComponent,
-    LibEditorComponent
+    LibEditorComponent,
+
+    DetectCommentsComponent
 ]

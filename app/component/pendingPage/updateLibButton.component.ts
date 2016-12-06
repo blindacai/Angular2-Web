@@ -1,9 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import {Library} from "../../service/model/library";
 import {updateLibrary} from "../../service/model/updateLibrary";
 import {LibraryService} from "../../service/library.service";
 import {HistoryService} from "../../service/history.service";
-import {SaveKeyService} from "../../service/savekey.service";
 
 @Component({
     selector: '[update-button]',
@@ -14,25 +13,21 @@ import {SaveKeyService} from "../../service/savekey.service";
                               (click) = "updateLib(libtoupdate, newfieldvalue)">
                         update
                       </button>
-                      
-                      <button (click) = "test()">
-                        Test
-                      </button>
                   
                       <div *ngIf = "errorMsg">
                         {{errorMsg}}
                       </div>
                   </td>
               `,
-    providers: [SaveKeyService]
 })
 
-export class UpdateButton{
+export class UpdateButton implements OnChanges{
     @Input('update-button')
     libtoupdate: Library;
 
     @Input()
      newfieldvalue: updateLibrary;
+
 
     @Output()
     reviewedLib = new EventEmitter<Library>();
@@ -45,9 +40,12 @@ export class UpdateButton{
     private key: number = 0;
 
     constructor(private libraryService: LibraryService,
-                private historyService: HistoryService,
-                private savekeyService: SaveKeyService){
+                private historyService: HistoryService){
 
+    }
+
+    ngOnChanges(){
+        //console.log("change from lib");
     }
 
     updateLib(libtoupdate: Library, newfieldvalue: updateLibrary){
@@ -66,12 +64,6 @@ export class UpdateButton{
 
     private findLib(data: Library){
         return data.id == this.libtoupdate.id;
-    }
-
-    test(){
-        //console.log(this.savekeyService.getkey());
-        this.libraryService.testUpdate(this.libtoupdate.id, "linda")
-            .subscribe(data => {console.log(data.message)});
     }
 
 }
