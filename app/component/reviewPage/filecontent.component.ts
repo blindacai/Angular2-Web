@@ -6,12 +6,13 @@ import {FileContentService} from "../../service/fileContent.service";
     selector: 'file-content',
     template: `
                 <div *ngIf = "file.content" class="card card-block">
-                    <div *ngFor = "let content of file.content">
-                        <p>{{content}}</p>
-                    </div>
+                    <span *ngFor = "let content of file.content">
+                        {{content}}
+                        <br>
+                    </span>
                 </div>
               `,
-    styles: [`p {
+    styles: [`span {
                    font-family: monospace;
                }`]
 })

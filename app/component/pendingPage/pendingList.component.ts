@@ -57,7 +57,7 @@ export class PendingListComponent implements OnInit, OnDestroy {
 
     getLibraryFromDatabase() {
         this.subscription = this.libraryService.getLibraryFromDatabase("linda")
-            .subscribe(libs => this.libraries = libs,
+            .subscribe(libs => {this.libraries = libs; this.errorMsg = null;},
                        error => this.errorMsg = error);
     }
 
