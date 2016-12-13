@@ -8,9 +8,9 @@ import {Library} from "../../service/model/library";
                 <div>
                     <span></span>
                     <input #searchbox
-                     (keyup.enter) = "searchdb(searchbox.value); searchbox.value = ''">
-                    <button (click) = "searchdb(searchbox.value); searchbox.value = ''">Search</button>
-                    <span>by sublib</span>
+                      >
+                    <button (click) = "searchdbBylib(searchbox.value); searchbox.value = ''">Search By lib and sublib</button>
+                    <button (click) = "searchdbByid(searchbox.value); searchbox.value = ''">Search By id</button>
                 </div>
                 <br>
                 <div *ngIf = "libraries">
@@ -29,9 +29,13 @@ export class SearchDBComponent{
 
     constructor(private libservice: LibraryService){}
 
-    searchdb(libinfo: string){
+    searchdbBylib(libinfo: string){
         this.libraries = null;
-        //this.libservice.getLibById(parseInt(libinfo)).subscribe(lib => this.library = lib);
         this.libservice.getLibBySublib(libinfo).subscribe(libs => {this.libraries = libs});
+    }
+
+    searchdbByid(id: string){
+        this.libraries = null;
+        this.libservice.getLibById(parseInt(id)).subscribe(lib => {this.libraries = []; this.libraries.push(lib)});
     }
 }
