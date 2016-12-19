@@ -8,24 +8,18 @@ import {formatLibService} from "./formatLib.service";
 import {LibraryLocal} from "../other/library.localservice";
 import {updateLibrary} from "./model/updateLibrary";
 import {Alert} from "./model/alert";
+import {PathSetting} from "../path";
 
 @Injectable()
 export class LibraryService {
 
-  //private dataurl_database = 'http://localhost:8080/pending_db';
-  //private dataurl_local = 'http://localhost:8080/pending_local';
-  //private dataurl_lib = 'http://localhost:8080/library';
+  private pathto_backend = PathSetting.PathToBackend;
 
-  private dataurl_database = 'http://lcai01.phage.bcgsc.ca:8080/pending_db';
-  private dataurl_local = 'http://lcai01.phage.bcgsc.ca:8080/pending_local';
-  private dataurl_lib = 'http://lcai01.phage.bcgsc.ca:8080/library';
-  private dataurl_sublib = 'http://lcai01.phage.bcgsc.ca:8080/sublib';
-
-  private test_url = 'http://lcai01.phage.bcgsc.ca:8080/checklib';
-
-  //private dataurl_database = 'http://Bioqcdev01.bcgsc.ca:8080/pending_db';
-  //private dataurl_local = 'http://Bioqcdev01.bcgsc.ca:8080/pending_local';
-  //private dataurl_lib = 'http://Bioqcdev01.bcgsc.ca:8080/library';
+  private dataurl_database = this.pathto_backend + '/pending_db';
+  private dataurl_local = this.pathto_backend + '/pending_local';
+  private dataurl_lib = this.pathto_backend + '/library';
+  private dataurl_sublib = this.pathto_backend + '/sublib';
+  private test_url = this.pathto_backend + '/checklib';
 
 
   constructor(private http: Http,
@@ -114,7 +108,7 @@ export class LibraryService {
         lib.status = "Pending";
         newField.addcomments = null;
         newField.addalerts = [];
-      return false;
+        return false;
     }
   }
 

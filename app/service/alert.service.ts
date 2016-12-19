@@ -2,13 +2,12 @@ import {Alert} from "./model/alert";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {Http} from '@angular/http';
+import {PathSetting} from "../path";
 
 @Injectable()
 export class AlertService{
 
-    //private alerts_url = 'http://localhost:4000/alerts';
-    private alerts_url = 'http://lcai01.phage.bcgsc.ca:8080/alerts';
-    //private alerts_url = 'http://Bioqcdev01.bcgsc.ca:8080/alerts';
+    private alerts_url = PathSetting.PathToBackend + '/alerts';
 
     constructor(private http: Http){}
 

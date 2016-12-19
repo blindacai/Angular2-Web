@@ -10,7 +10,7 @@ import '../rxjs-operators';
                     <a [routerLink] ="['/pending']" routerLinkActive="active">Pending</a>
                     <a [routerLink] ="['/search-db']" routerLinkActive="active">Search</a>
                     <!--<a [routerLink] ="['/tabtwo']" routerLinkActive="active">TabTwo</a>-->
-                    <a [routerLink] ="['/tabthree']" routerLinkActive="active">TabThree</a>
+                    <a [routerLink] ="['/tabthree']" routerLinkActive="active">History</a>
                     <a [routerLink] ="['/tabfour']" routerLinkActive="active">TabFour</a>
                 </nav>
                 <br>
@@ -20,6 +20,4 @@ import '../rxjs-operators';
     //styleUrls: ['app/view/bootstrap.min.css', 'app/view/navbar.css']
 })
 
-export class ProjectTitleComponent {
-// change from git
-}
+export class ProjectTitleComponent {}

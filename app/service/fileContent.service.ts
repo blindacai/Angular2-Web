@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 import {Http, URLSearchParams} from '@angular/http';
+import {PathSetting} from "../path";
 
 @Injectable()
 export class FileContentService{
@@ -12,9 +13,7 @@ export class FileContentService{
     private contentSource = new Subject<string[]>();
     contentSource$ = this.contentSource.asObservable();
 
-    //private file_path: string = 'http://localhost:8080/filecontent';
-    private file_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filecontent';
-    //private file_path: string = 'http://Bioqcdev01.bcgsc.ca:8080/filecontent';
+    private file_path: string = PathSetting.PathToBackend + '/filecontent';
 
 
     // $event.target === <input type="file"

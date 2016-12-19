@@ -8,8 +8,10 @@ import {Subscription} from "rxjs";
     selector: 'about',
     template: `
                 {{title}}
-                <div *ngFor = "let lib of reviewed">
-                    {{lib.id}}, {{lib.status}}, {{lib.comments}}
+                <div *ngIf = "reviewed">
+                    <div *ngFor = "let lib of reviewed">
+                        {{lib.id}}, {{lib.status}}, {{lib.comments}}
+                    </div>
                 </div>
               `
     //templateUrl: 'app/view/navbar-body.html'
@@ -22,7 +24,7 @@ export class TabThreeComponent implements OnInit, OnDestroy{
     test: string;
 
     subscription: Subscription;
-    reviewed: Library[] = [];
+    reviewed: Library[];
 
     ngOnInit(){
         this.getReviewedLib();
@@ -40,5 +42,3 @@ export class TabThreeComponent implements OnInit, OnDestroy{
     }
 
 }
-
-// change from git 3

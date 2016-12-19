@@ -9,7 +9,7 @@ import {HistoryService} from "../../service/history.service";
     template: `
                   <td align = "center">
                       <button type = "submit" 
-                              [disabled] = "libtoupdate.status == 'Passed'"
+                              [disabled] = "libtoupdate.status == 'Pending'"
                               (click) = "updateLib(libtoupdate, newfieldvalue)">
                         update
                       </button>

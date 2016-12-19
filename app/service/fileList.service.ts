@@ -4,14 +4,14 @@ import {Observable} from "rxjs/Observable";
 import {Library} from "./model/library";
 import {formatFileService} from "./formatFile.service";
 import {theFile} from "./model/file";
+import {PathSetting} from "../path";
 
 @Injectable()
 export class FileListService{
     constructor(private http: Http,
                 private formatfileservice: formatFileService){}
 
-    //private file_name_path: string = 'http://localhost:8080/filename';
-    private file_name_path: string = 'http://lcai01.phage.bcgsc.ca:8080/filename';
+    private file_name_path: string = PathSetting.PathToBackend + '/filename';
 
     getFileList(library: Library): Observable<theFile[]>{
         let params: URLSearchParams = new URLSearchParams();
