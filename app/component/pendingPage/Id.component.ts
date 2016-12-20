@@ -28,7 +28,7 @@ export class IdField{
   }
 
     gotoDetails(){
-        window.location.href='http://bioqcweb02.bcgsc.ca/web/?queriedLib=' + this.library.id + '&pipeline=bbt';
+        window.open('http://bioqcweb02.bcgsc.ca/web/?queriedLib=' + this.library.id + '&pipeline=bbt');
     }
 
 }
