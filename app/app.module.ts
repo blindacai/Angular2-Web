@@ -6,6 +6,7 @@ import { HttpModule, JsonpModule }  from '@angular/http';
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // components
 import { ProjectTitleComponent } from './component/project-title.component';
@@ -58,7 +59,8 @@ import {RestoreService} from "./service/restore.service";
               formatFileService,
               FileContentService,
               formatAlertService,
-              RestoreService],
+              RestoreService,
+              {provide: LocationStrategy, useClass: HashLocationStrategy}],
 
   bootstrap: [ ProjectTitleComponent ]
 })
